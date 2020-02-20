@@ -96,7 +96,7 @@ class Login extends React.Component {
                 <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 
                     <View style = {{backgroundColor:'red',flex:1}}> 
-                        <Text>Login</Text>
+                        <Text>Coucou j'ai change le code</Text>
                     </View>
                     
 
