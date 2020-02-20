@@ -18,7 +18,7 @@ data.push({
 })
 console.log(data)*/
 
-/* kunichuwaa */
+/* kunichuwa */
 
 
 class Login extends React.Component {
