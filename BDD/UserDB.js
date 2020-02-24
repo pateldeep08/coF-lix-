@@ -6,9 +6,21 @@ const tabPassword = []
 
 export default [
     {
-        nom : "Admin",
+        nom : "admin",
         prenom : "PrenomAdmin",
-        mail : "Admin.PrenomAdmin@mail.com",
+        mail : "a",
+        tel : "061476XXXX",
+        password : "a",
+    },{
+        nom : "admin",
+        prenom : "PrenomAdmin",
+        mail : "admin1@mail.com",
+        tel : "061476XXXX",
+        password : "abcd",
+    },{
+        nom : "admin",
+        prenom : "PrenomAdmin",
+        mail : "admin2@mail.com",
         tel : "061476XXXX",
         password : "abcd",
 

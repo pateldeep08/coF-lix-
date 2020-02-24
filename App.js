@@ -3,13 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import Register from './Components/Register'
 import Login from './Components/Login'
 import { render } from 'react-dom';
+import Model from './Components/Model/Model'
+import Navigation from './Navigation/Navigation'
 
 export default class App extends React.Component {
   render(){
     return (
 
        
-        <Login/> 
+        <Navigation/> 
       
    
 
