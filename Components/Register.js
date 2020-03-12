@@ -11,6 +11,8 @@ import bg from "../assets/fond.png"
 import username from "../assets/name.png"
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import firebase from 'firebase'
+
 /*console.log(data)
 data.push({
    Tel : "06..",
@@ -24,19 +26,23 @@ class Register extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            nom : "", 
-            prenom : "",
-            mail : "",
-            confMail : "",
-            tel : "",
-            password : "",
-            confPassword : ""
+            nom : "patel", 
+            prenom : "deep",
+            mail : "deep.patel@edu.ece.fr",
+            confMail : "deep.patel@edu.ece.fr",
+            tel : "0140139906",
+            password : "azerty",
+            confPassword : "azerty",
+            isInitialize : true,
+            isLog : false, 
             
         }
     }
 
     _validerReg(){
 
+        isLog = this.state.isLog
+        
         /*
             Fonctionnalités manquantes : 
                 - verification des formats tél
@@ -51,6 +57,21 @@ class Register extends React.Component {
         
         */
 
+       var config = {
+        apiKey: "AIzaSyDArU_Nwqm5_EsceAtGDriieaTffCg7YYo",
+        authDomain: "cofelix2-f996a.firebaseapp.com",
+        databaseURL: "https://cofelix2-f996a.firebaseio.com",
+        projectId: "cofelix2-f996a",
+        storageBucket: "cofelix2-f996a.appspot.com",
+        messagingSenderId: "825876108801",
+        appId: "1:825876108801:web:b5526a9619b62b79821200"
+    };
+
+    if(this.state.isInitialize ==true){
+        firebase.initializeApp(config);
+        this.state.isInitialize = false
+    }
+
         //On check si tous les champs sont remplie
         if (this.state.nom != "" && this.state.prenom != "" && this.state.mail != "" && this.state.confMail != "" && this.state.tel != "" && this.state.password != "" && this.state.confPassword != "" ){
             
@@ -61,10 +82,65 @@ class Register extends React.Component {
                 //On check si les mdp sont correct 
                 if(this.state.password == this.state.confPassword){
 
+                    const update = {
+                        displayName : this.state.prenom,
+                        //phoneNumber : "0614762321",
+                        photoURL : "0652345676",
+
+                    }
+
+                    const phoneUp = {
+                        phoneNumber : '12345609876'
+                    }
+
+                    console.log(this)
+                    //var user = firebase.auth().currentUser;
+
+                    firebase.auth().createUserWithEmailAndPassword(this.state.mail, this.state.password).then(function(user) {
+                        // [END createwithemail]
+                        // callSomeFunction(); Optional
+                        var user = firebase.auth().currentUser;
+
+                        //isLog = true 
+                    
+                        //console.log(this)
+                        user.updateProfile(update).then(function() {
+                            // Update successful.
+                            console.log(user)
+                            isLog = true
+                        }, function(error) {
+                            // An error happened.
+                        })
+                        
+                        
+                        
+                        ;        
+                    }, function(error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        // [START_EXCLUDE]
+                        if (errorCode == 'auth/weak-password') {
+                            alert('The password is too weak.');
+                        } else {
+                            console.error(error);
+                        }
+                        // [END_EXCLUDE]
+                    });
+
+                    
+
                    Alert.alert('Félicitation !!!! Vous êtes un St-Felicien !')
+                  // console.log(user)
+                  console.log(isLog)
                    if (this._confettiView) {
                     this._confettiView.startConfetti();
                   }
+
+                
+
+
+                  /*
 
                   data.push({
                       nom : this.state.nom,
@@ -76,6 +152,8 @@ class Register extends React.Component {
                   })
 
                   console.log(data)
+
+                  */
                 
                 
                 }

@@ -13,6 +13,12 @@ import bg from "../assets/fond.png"
 import username from "../assets/name.png"
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import 'react-native-gesture-handler';
+
+import firebase from 'firebase'
+
+
+
 /*console.log(data)
 data.push({
    Tel : "06..",
@@ -27,9 +33,10 @@ class Login extends React.Component {
         super(props)
         this.state = {
 
-            mail: "",
-            password: "",
+            mail: "deep.patel@edu.ece.fr",
+            password: "azerty",
             isLog: false,
+            isInitialize : true
         }
     }
 
@@ -44,6 +51,11 @@ class Login extends React.Component {
 
     }
 
+    nav(){
+        this.props.navigation.navigate('Accueil')
+
+    }
+
     _validerLog() {
 
         /*
@@ -52,25 +64,54 @@ class Login extends React.Component {
         
         */
 
-        console.log(data.length)
-        console.log(data[0].mail)
-        let i
-        let mailGood = false
-        let mdpGood = false
-        let verifEmail = 0
-        console.log(mailGood)
+        var config = {
+            apiKey: "AIzaSyDArU_Nwqm5_EsceAtGDriieaTffCg7YYo",
+            authDomain: "cofelix2-f996a.firebaseapp.com",
+            databaseURL: "https://cofelix2-f996a.firebaseio.com",
+            projectId: "cofelix2-f996a",
+            storageBucket: "cofelix2-f996a.appspot.com",
+            messagingSenderId: "825876108801",
+            appId: "1:825876108801:web:b5526a9619b62b79821200"
+        };
+
+        if(this.state.isInitialize ==true){
+            firebase.initializeApp(config);
+            this.state.isInitialize = false
+        }
 
 
+       
+        firebase.auth().signInWithEmailAndPassword(this.state.mail, this.state.password).then(function(){
+
+            console.log("log")
+            //nav()
+
+            var user = firebase.auth().currentUser;
+
+            console.log(user)
+
+            
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("erricic")
+            // ...
+          });
+
+
+
+
+        /*
         for (i = 0; i < data.length; i++) {
 
             if ((this.state.mail == data[i].mail) && (this.state.password == data[i].password)) {
 
-                Alert.alert('login')
+                //Alert.alert('login')
                 //this.show()
                 this.state.isLog = true
-
+                this.props.navigation.navigate('Accueil')
             }
-
         }
 
         if (this.state.isLog != true) {
@@ -96,17 +137,13 @@ class Login extends React.Component {
 
     render() {
 
-        //console.log
-        console.log(data)
-
-
         return (
 
             <ImageBackground source={bg} style={styles.bg}>
 
                 <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 
-                    <View style={{ flex: 1,justifyContent: 'space-evenly' }}>
+                    <View style={{ flex: 1,justifyContent: 'space-evenly', width:250 }}>
 
                         <Text style={{ flex: 2 }}></Text>
 
@@ -120,9 +157,9 @@ class Login extends React.Component {
                                 value={this.state.mail}
                                 label="Mail"
                                 mode="outlined"
+                               // multiline="true"
                             />
                             
-
                             <TextInput
                                 style={styles.input, { flex: 1 }}
                                 placeholder="  Mot de passe"
@@ -148,14 +185,22 @@ class Login extends React.Component {
                         <Text style={{ flex: 1 }}></Text>
 
                         <Button
-                            title="Devenir Saint-Felicien"
+                            title="Connection"
                             onPress={() => this._validerLog()}
                             style={{ flex: 1 }}
-                            //onPress = {()=>this.show()}
-
                         />
 
                         <Text style={{ flex: 1 }}></Text>
+
+                        <Button
+                            title="S'inscrire"
+                            onPress={()=>this.props.navigation.navigate('Register')}
+                            style={styles.inscritpionButton}
+                        />
+
+                        <Text style={{ flex: 1 }}></Text>
+
+
 
                     </View>
 
@@ -181,13 +226,13 @@ const styles = StyleSheet.create({
     input: {
         //borderRadius : 20,
         fontSize: 16,
-        width: 1000,
+        width: 100,
         justifyContent: 'center',
         //borderWidth: 0.5,
         opacity: 3,
         backgroundColor: '#fff',
         //padding:'center',
-        height: 45,
+        height: '20%',
         alignItems:'center'
         //flex :
         //backgroundColor :'rgb(59,22,4)'
@@ -208,6 +253,12 @@ const styles = StyleSheet.create({
     },
     textLog: {
         opacity: 1
+    },
+    inscritpionButton:{
+        backgroundColor:'#fff',
+        flex:1,
+        width:20
+
     }
 });
 

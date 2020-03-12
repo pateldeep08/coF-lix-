@@ -79,11 +79,6 @@ import Toaster, { ToastStyles } from 'react-native-toaster'
 import { Toast } from 'react-native-toast-with-button'
 
 
-
-
-
-
-
 class Model extends React.Component {
    
     render(){

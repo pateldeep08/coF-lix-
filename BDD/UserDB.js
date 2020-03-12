@@ -1,8 +1,4 @@
-const tabNom = []
-const tabPrenom = []
-const tabMail = []
-const tabTel = []
-const tabPassword = []
+
 
 export default [
     {
@@ -27,3 +23,4 @@ export default [
     }
     
 ]
+
