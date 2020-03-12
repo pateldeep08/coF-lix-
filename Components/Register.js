@@ -34,7 +34,8 @@ class Register extends React.Component {
             password : "azerty",
             confPassword : "azerty",
             isInitialize : true,
-            isLog : false, 
+            isLog : false,
+            user : {} ,
             
         }
     }
@@ -93,21 +94,18 @@ class Register extends React.Component {
                         phoneNumber : '12345609876'
                     }
 
-                    console.log(this)
+                
                     //var user = firebase.auth().currentUser;
 
                     firebase.auth().createUserWithEmailAndPassword(this.state.mail, this.state.password).then(function(user) {
                         // [END createwithemail]
                         // callSomeFunction(); Optional
                         var user = firebase.auth().currentUser;
-
-                        //isLog = true 
                     
                         //console.log(this)
                         user.updateProfile(update).then(function() {
                             // Update successful.
                             console.log(user)
-                            isLog = true
                         }, function(error) {
                             // An error happened.
                         })
@@ -128,16 +126,36 @@ class Register extends React.Component {
                         // [END_EXCLUDE]
                     });
 
+                    const isLog = {
+                        displayName : this.state.prenom,
+                        //phoneNumber : "0614762321",
+            
+                    }
+
+                    const test = this.props.navigation
+
+
+                    firebase.auth().onAuthStateChanged(function(user) {
+                        if (user) {
+                          console.log("------------------------------------------------")
+                          console.log(user)
+                          test.navigate('Login')
+
+                          
+
+
+                        } else {
+                          // No user is signed in.
+                        }
+                      });
                     
 
                    Alert.alert('Félicitation !!!! Vous êtes un St-Felicien !')
                   // console.log(user)
-                  console.log(isLog)
                    if (this._confettiView) {
                     this._confettiView.startConfetti();
                   }
 
-                
 
 
                   /*
