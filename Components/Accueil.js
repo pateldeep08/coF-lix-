@@ -18,9 +18,16 @@ export default class Accueil extends React.Component {
             password: "",
             isLog: false,
         }
+
+        //const { userName} = this.props.route.params
+        //{this.props.route.params.userName}
     }
    
     render(){
+
+
+        console.log('----')
+        //console.log(this.props.route.params.userName)
         return(
 
             <View style={styles.container}>
@@ -32,7 +39,7 @@ export default class Accueil extends React.Component {
                 </View>
 
                 <View style = {styles.center} >
-                    <Text>Salut !</Text>
+                    <Text>Salut ! </Text>
                 </View>
 
                 <View style = {styles.bottom}>

@@ -5,9 +5,16 @@ import Login from './Components/Login'
 import { render } from 'react-dom';
 import Model from './Components/Model/Model'
 
+import {Provider} from 'react-redux'
+//import Store from './Store/configStore'
+import {useSelector} from 'react-redux' 
+
 import firebase from 'firebase'
 
 import 'react-native-gesture-handler';
+
+//import {Provider } from 'react-redux'
+//import {store} from './Redux/app.redux'
 
 
 
@@ -18,10 +25,61 @@ import home from './home'
 import detail from './detail'
 
 import Accueil from './Components/Accueil'
+import init from './Components/init'
 
 
 import stackAccueil from "./Components/stackAccueil"
+import { createStore } from 'redux';
 
+import allReducers from './Redux/reducers/reducersIndex'
+
+const store = createStore(allReducers)
+
+/*
+life cycle 
+https://www.w3schools.com/react/react_lifecycle.asp
+*/
+
+/*
+
+https://www.youtube.com/watch?v=_z9DS9gpujY&t=287s
+
+// Store = Global State
+
+
+// Action toggle_isInit 
+
+const toFalse = () =>{
+  return{
+    type : 'TOFALSE'
+  }
+}
+
+
+//reducer 
+
+const toggle_isInit = (state = true , action ) => {
+  switch (action.type) {
+    case 'TOFALSE':
+      return false
+      
+      
+  
+
+  }
+}
+
+let store = createStore(toggle_isInit)
+
+//Display it on console 
+
+store.subscribe(()=>console.log(store.getState()))
+
+// Dispatch
+store.dispatch(toFalse())
+
+
+*/
 
 
 
@@ -44,14 +102,22 @@ export default class App extends React.Component {
     return (
 
 
-      
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Accueil" component={Accueil} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="init" component={init} />
+              <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+              <Stack.Screen name="Accueil" component={Accueil} />
+              <Stack.Screen name="Register" component={Register} />
+
+              
+            </Stack.Navigator>
+          </NavigationContainer>
+
+        </Provider>
+   
+
+    
 
       
 

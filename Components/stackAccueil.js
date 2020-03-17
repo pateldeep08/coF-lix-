@@ -36,13 +36,13 @@ export default class stackAccueil extends React.Component {
 
   render(){
     return (
-
+      <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Accueil" component={Accueil} />
           <Stack.Screen name="JePropose" component={JePropose} />
 
         </Stack.Navigator>
-
+      </NavigationContainer>
 
       );
    }

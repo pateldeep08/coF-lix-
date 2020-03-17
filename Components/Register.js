@@ -13,15 +13,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 import firebase from 'firebase'
 
-/*console.log(data)
-data.push({
-   Tel : "06..",
-   Mail : "skcbqkfbkuqa@sdksl"
-})
-console.log(data)*/
-
 
 class Register extends React.Component {
+
+    _isMounted = false
 
     constructor(props){
         super(props)
@@ -39,6 +34,20 @@ class Register extends React.Component {
             
         }
     }
+
+    componentDidMount(){
+        this._isMounted = true 
+        console.log('composant register monté')
+
+    }
+
+
+    componentWillUnmount(){
+        this._isMounted = false 
+        console.log('composant register démonté')
+    }
+
+
 
     _validerReg(){
 
@@ -58,20 +67,7 @@ class Register extends React.Component {
         
         */
 
-       var config = {
-        apiKey: "AIzaSyDArU_Nwqm5_EsceAtGDriieaTffCg7YYo",
-        authDomain: "cofelix2-f996a.firebaseapp.com",
-        databaseURL: "https://cofelix2-f996a.firebaseio.com",
-        projectId: "cofelix2-f996a",
-        storageBucket: "cofelix2-f996a.appspot.com",
-        messagingSenderId: "825876108801",
-        appId: "1:825876108801:web:b5526a9619b62b79821200"
-    };
 
-    if(this.state.isInitialize ==true){
-        firebase.initializeApp(config);
-        this.state.isInitialize = false
-    }
 
         //On check si tous les champs sont remplie
         if (this.state.nom != "" && this.state.prenom != "" && this.state.mail != "" && this.state.confMail != "" && this.state.tel != "" && this.state.password != "" && this.state.confPassword != "" ){
@@ -102,10 +98,10 @@ class Register extends React.Component {
                         // callSomeFunction(); Optional
                         var user = firebase.auth().currentUser;
                     
-                        //console.log(this)
+            
                         user.updateProfile(update).then(function() {
                             // Update successful.
-                            console.log(user)
+                
                         }, function(error) {
                             // An error happened.
                         })
@@ -123,7 +119,7 @@ class Register extends React.Component {
                         } else {
                             console.error(error);
                         }
-                        // [END_EXCLUDE]
+                
                     });
 
                     const isLog = {
@@ -137,8 +133,7 @@ class Register extends React.Component {
 
                     firebase.auth().onAuthStateChanged(function(user) {
                         if (user) {
-                          console.log("------------------------------------------------")
-                          console.log(user)
+   
                           test.navigate('Login')
 
                           
@@ -151,7 +146,7 @@ class Register extends React.Component {
                     
 
                    Alert.alert('Félicitation !!!! Vous êtes un St-Felicien !')
-                  // console.log(user)
+                 
                    if (this._confettiView) {
                     this._confettiView.startConfetti();
                   }
@@ -169,7 +164,7 @@ class Register extends React.Component {
 
                   })
 
-                  console.log(data)
+           
 
                   */
                 
@@ -187,8 +182,7 @@ class Register extends React.Component {
 
     render() {
       
-        //console.log
-        console.log(data)
+     
 
 
         return(

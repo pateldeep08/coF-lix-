@@ -17,43 +17,38 @@ import 'react-native-gesture-handler';
 
 import firebase from 'firebase'
 
+import { connect} from 'react-redux'
+
+import {useSelector} from 'react-redux' 
 
 
-/*console.log(data)
-data.push({
-   Tel : "06..",
-   Mail : "skcbqkfbkuqa@sdksl"
-})
-console.log(data)*/
+
 
 
 class Login extends React.Component {
+
+    _isMounted = false 
 
     constructor(props) {
         super(props)
         this.state = {
 
             mail: "deep.patel@edu.ece.fr",
-            password: "azerty",
-            isLog: false,
-            isInitialize : true
+            password: "azert",
+
         }
     }
 
-    _text() {
-
-        if (this.state.isLog == false) {
-            return "not log"
-        }
-        if (this.state.isLog == true) {
-            return ""
-        }
+    componentDidMount(){
+        this._isMounted = true 
+        console.log('composant login  monté')
 
     }
 
-    nav(){
-        this.props.navigation.navigate('Accueil')
 
+    componentWillUnmount(){
+        this._isMounted = false 
+        console.log('composant login  démonté')
     }
 
     _validerLog() {
@@ -64,73 +59,28 @@ class Login extends React.Component {
         
         */
 
-        var config = {
-            apiKey: "AIzaSyDArU_Nwqm5_EsceAtGDriieaTffCg7YYo",
-            authDomain: "cofelix2-f996a.firebaseapp.com",
-            databaseURL: "https://cofelix2-f996a.firebaseio.com",
-            projectId: "cofelix2-f996a",
-            storageBucket: "cofelix2-f996a.appspot.com",
-            messagingSenderId: "825876108801",
-            appId: "1:825876108801:web:b5526a9619b62b79821200"
-        };
-
-        if(this.state.isInitialize ==true){
-            firebase.initializeApp(config);
-            this.state.isInitialize = false
-        }
-
-
+        // Traitement des this non reconnu par firebase 
+        const show = this 
+        const navigation = this.props.navigation
+        
        
         firebase.auth().signInWithEmailAndPassword(this.state.mail, this.state.password).then(function(){
 
-            console.log("log")
-            //nav()
-
             var user = firebase.auth().currentUser;
+            navigation.navigate('Accueil', {userName : user.displayName})
 
-            console.log(user)
-
-            
         }).catch(function(error) {
-            // Handle Errors here.
+
+            // Gestion des erreurs
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log("erricic")
-            // ...
-          });
+            //Appel de la fonction qui permet l'affiche d'un message pop "email ou mdp incorrect"
+            show.show()    
 
-
-
-
-        /*
-        for (i = 0; i < data.length; i++) {
-
-            if ((this.state.mail == data[i].mail) && (this.state.password == data[i].password)) {
-
-                //Alert.alert('login')
-                //this.show()
-                this.state.isLog = true
-                this.props.navigation.navigate('Accueil')
-            }
-        }
-
-        if (this.state.isLog != true) {
-            this.show()
-        }
-        //Alert.alert('login')
-
-        /*
-        if(this.state.password == data[verifEmail].password){
-
-            this.state.isLog = true
-            Alert.alert('Bienvenu poto')
-
-        } 
-        else(this.state.isLog = false) 
-*/
-
+        });
     }
 
+    //Fonction qui permet l'affichage rouge 
     show() {
         this.refs.toast.show("! Email ou Mot de Passe incorrect", 1000, null, () => this.refs.toast.close(), null)
     }
@@ -147,7 +97,7 @@ class Login extends React.Component {
 
                         <Text style={{ flex: 2 }}></Text>
 
-                        <Text style={{ flex: 1 }}>S'authentifier</Text>
+                        <Text style={{ flex: 1 }}>S'authentifier </Text>
 
                         <View style={{ flex: 4 }}> 
                             <TextInput
@@ -200,13 +150,9 @@ class Login extends React.Component {
 
                         <Text style={{ flex: 1 }}></Text>
 
-
-
                     </View>
 
                 </KeyboardAvoidingView>
-
-
 
             </ImageBackground>
         )
@@ -261,5 +207,6 @@ const styles = StyleSheet.create({
 
     }
 });
+
 
 export default Login
