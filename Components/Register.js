@@ -5,7 +5,7 @@ import {KeyboardAvoidingView} from 'react-native';
 //import tabNom from '../BDD/UserDB'
 import data from '../BDD/UserDB'
 
-import Confetti from "react-native-confetti"
+import Confetti from "react-native-confetti" //uniformer les import, soit c'est '', soit c'est "", mais pas les 2
 
 import bg from "../assets/fond.png"
 import username from "../assets/name.png"
@@ -34,8 +34,9 @@ class Register extends React.Component {
             
         }
     }
-
-    _validerReg(){
+    //Je ne suis pas fan des fonctions avec des _ au début, je ne vois pas l'interet à par alourdir.
+    //Si le but de cette fonction est de faire de la valider de type blindage, renommer là par exemple validateRegister. C'est bcp plus explicite.
+   _validerReg(){
 
         /*
             Fonctionnalités manquantes : 
@@ -48,19 +49,22 @@ class Register extends React.Component {
                 - Une fois validé faire redesendre le clavier 
                 - S'authetification avec fb 
                 - Envoie d'un mail de confirmation 
-        
+        //si c'est de la doc, ça se met juste au dessus de la déclaration de la fonction.
+        //Si il y a encore des fonctionnalités à développer, préferez TODO, car certains IDE peuvent le reconnaitre, ça donnerait :
+        /*
+         * TODO : 
+           - verification des formats tél
+           - verification des formats mail 
+         */
         */
 
         //On check si tous les champs sont remplie
         if (this.state.nom != "" && this.state.prenom != "" && this.state.mail != "" && this.state.confMail != "" && this.state.tel != "" && this.state.password != "" && this.state.confPassword != "" ){
-            
+            // vous avez trop de saut de ligne inutile sur la plupart de vos codes.
             //On check si les mails sont corrects 
             if(this.state.mail == this.state.confMail){
-
-
                 //On check si les mdp sont correct 
                 if(this.state.password == this.state.confPassword){
-
                    Alert.alert('Félicitation !!!! Vous êtes un St-Felicien !')
                    if (this._confettiView) {
                     this._confettiView.startConfetti();
@@ -72,23 +76,18 @@ class Register extends React.Component {
                       mail : this.state.mail,
                       tel: this.state.tel,
                       password : this.state.password
-
                   })
 
                   console.log(data)
-                
-                
                 }
                 else Alert.alert('Error Mdp')
-
             }
             else Alert.alert('Error Mail')
-
         }
         else Alert.alert('Pop Pop Pop ! Tous les champs ne sont pas remplis !')
-
     }
-
+   // c'est quand meme mieux non ?
+   
     render() {
       
         //console.log
