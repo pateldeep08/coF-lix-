@@ -21,17 +21,25 @@ import {useSelector} from 'react-redux'
 
 
 
+
 class init extends React.Component {
 
     constructor(props) {
+
+        
         super(props)
+
+   
         this.state = {
 
-            isLoading : false
+            isLoading : false,
+            userTest : 'deep'
 
         }
 
     }
+
+  
 
     dbInit(){
 
@@ -47,18 +55,26 @@ class init extends React.Component {
 
         firebase.initializeApp(config);
 
-
-
+      
 
 
         this.props.navigation.navigate('Login')
 
     }
 
+    
+
+    
+
 
 
     render() {
 
+        //Permet d'enlever les warnings jaune 
+        console.disableYellowBox = true
+
+
+        
         
         return (
 

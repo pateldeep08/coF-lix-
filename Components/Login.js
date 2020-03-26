@@ -34,7 +34,7 @@ class Login extends React.Component {
         this.state = {
 
             mail: "deep.patel@edu.ece.fr",
-            password: "azert",
+            password: "azerty",
 
         }
     }
@@ -67,7 +67,8 @@ class Login extends React.Component {
         firebase.auth().signInWithEmailAndPassword(this.state.mail, this.state.password).then(function(){
 
             var user = firebase.auth().currentUser;
-            navigation.navigate('Accueil', {userName : user.displayName})
+            navigation.navigate('Accueil', {userName : user.uid})
+            console.log(user)
 
         }).catch(function(error) {
 

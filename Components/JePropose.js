@@ -1,15 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react'
 import { StyleSheet, Text, View, Button, Alert, ImageBackground} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {KeyboardAvoidingView} from 'react-native';
-//import tabNom from '../BDD/UserDB'
-import data from '../BDD/JeProposeDB'
-
-import Confetti from "react-native-confetti"
-
+import firebase from 'firebase'
 import bg from "../assets/fond.png"
-import username from "../assets/name.png"
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Toast } from 'react-native-toast-with-button'
+//import ChoisirPhoto from './ChoisirPhoto'
+import ChoisirPhoto from './ChoisirPhoto'
+import { onSessionWasInterrupted } from 'expo/build/AR';
 
 
 class JePropose extends React.Component {
@@ -17,48 +16,134 @@ class JePropose extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            titre : "", 
-            description : "",  
-            duree : "", 
+            titre : "a", 
+            description : "a",  
+            duree : "a", 
+            image:"",
+            id_user: "",
+            json:{}
         }
     }
 
-    _validerJePropose(){
+    Proposition(){
 
-        //On check si tous les champs sont remplie
+        //On check si tous les champs sont remplis
         if (this.state.titre != "" && this.state.description != "" && this.state.duree != ""){
 
-            data.push({
-                titre : this.state.titre,
-                description : this.state.description,
-                duree : this.state.duree,
-                  })
+            firebase.database().ref().child('proposition').push({
 
-            console.log(data)
-
+                titre: this.state.titre,
+                //description: this.state.description,
+                //duree: this.state.duree,
+                //userId: 'test'
+    
+            }).then(() => {
+                //success callback
+                //console.log('data ', data)
+            }).catch(() => {
+                //error callback
+                //console.log('error ', error)
+            })
         }
         else Alert.alert('Pop Pop Pop ! Tous les champs ne sont pas remplis !')
 
+        this.setState({
+            titre : "",
+            description : "",
+            duree : ""
+        })
+
+        this.show()
+
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+
+        sleep(1000).then(()=>{
+
+            this.props.navigation.navigate('Accueil')
+
+        })
+
+        this.getProposition()
+
+        
+    
+    }
+
+    getProposition(){
+
+        
+
+       // var userId = this.props.route.params.userName
+
+        /*
+        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+            var username = (snapshot.val() && snapshot.val().displayName) || 'Anonymous';
+     
+            console.log(username)
+           // ...
+        });
+
+        */
+
+      //  console.log(userId)
+
+        const json = this.state
+        const aff = this
+        
+        firebase.database().ref().child('Proposition').on('value', (data) => {
+          var a;
+          // console.log(data.toJSON())
+          //aff.setState({json : data})
+          json.json = data.toJSON()
+          //   resultat = a;
+          console.log(json.json)
+         //   console.log("premier");
+         //   //console.log(a)
+         //   aff.affichageJSON(json.json)
+         //   console.log(json.json);
+        });
+        
+            
+       //console.log(this.state.json)
+      
+      //console.log("------------")
+      //console.log(a)
+      //console.log(propositions)
+     
+    }
+    
+    affichageJSON(json){
+        //parse le json pour le lire
+        const obj = JSON.stringify(json)
+        const obj1 = JSON.parse(obj)
+         console.log(json)
+        // const resultat = obj1[0]
+        // console.log("afficahe json ")
+        // console.log(resultat);
+        // this.state.json = resultat
+        
+    }
+
+    show() {
+        this.refs.toast.show("Ajouté ✓", 1000, null, () => this.refs.toast.close(), null)
+    }
+
+    _AjouterPhoto(){
+        this.props.navigation.navigate('ChoisirPhoto')
     }
 
     render() {
-      
-        //console.log
-        console.log(data)
-
-
+        
         return(
 
             <ImageBackground source = {bg} style = {styles.bg}>
 
                  
                 <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-                
-                    <View> 
-                        <Text>Je propose</Text>
-                    </View>
 
-                    <Button title = "Ajouter Photos" onPress={()=>{}} />
+                    <Button title = "Ajouter Photos" onPress={()=>this._AjouterPhoto()} />
                     
                     <View style={{ flexDirection: 'row'}} >
 
@@ -69,7 +154,7 @@ class JePropose extends React.Component {
                             onChangeText = {(text) => this.setState({titre : text})} 
                             value = {this.state.titre}
                             label = "Titre"
-                            mode = "flat"
+                            mode = "outlined"
                         />
                     </View>
 
@@ -90,13 +175,29 @@ class JePropose extends React.Component {
                         <TextInput 
                             style = {styles.input}
                             placeholder = "  Durée"
+                            onChangeText = {(text) => this.setState({duree : text})}
                             value = {this.state.duree}
                             label = "Durée"
                             mode = "outlined"
                         />
                     </View>
 
-                    <Button title = "Valider" onPress={()=>this._validerJePropose()} />
+                    <View >
+                        <Toast
+                            ref="toast"
+                            textStyle={{ color: 'green' }}
+                            style={{ backgroundColor: 'green' }}
+                           
+                        />
+                    </View>
+                    
+
+                    
+
+                       
+
+                    <Button title = "Valider" onPress={()=>this.Proposition()} />
+
                 </KeyboardAvoidingView>
 
             </ImageBackground>
@@ -134,6 +235,7 @@ const styles = StyleSheet.create({
         fontSize : 16,
         width : 320,
         justifyContent: 'center',
+        textAlignVertical: 'top',
         //borderWidth: 0.5,
         opacity:3,
         backgroundColor : '#fff',

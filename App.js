@@ -21,11 +21,13 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import home from './home'
-import detail from './detail'
+
 
 import Accueil from './Components/Accueil'
 import init from './Components/init'
+import JePropose from './Components/JePropose'
+import ChoisirPhoto from './Components/ChoisirPhoto'
+import PagePublication from './Components/PagePublication'
 
 
 import stackAccueil from "./Components/stackAccueil"
@@ -109,6 +111,9 @@ export default class App extends React.Component {
               <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
               <Stack.Screen name="Accueil" component={Accueil} />
               <Stack.Screen name="Register" component={Register} />
+              <Stack.Screen name="JePropose" component={JePropose} />
+              <Stack.Screen name="ChoisirPhoto" component={ChoisirPhoto} />
+              <Stack.Screen name="PagePublication" component={PagePublication} />
 
               
             </Stack.Navigator>
