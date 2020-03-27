@@ -63,12 +63,14 @@ class PagePublication extends React.Component {
 
       const propositions = []
       childSnapshot.forEach((doc) => {
-        propositions.push({
-
-          key : doc.key,
-          description : doc.val().titre
-    
-        });
+        propositions.push(
+          
+            {
+              key : doc.key,
+              description : doc.val().titre
+            }
+         
+        );
         
        // this.setState({
          // propositions : propositions
@@ -84,6 +86,16 @@ class PagePublication extends React.Component {
       })
 
 
+      // console.log("t'es ici mon bro ");
+      // console.log(this.state.propositions)  
+      // // const data = JSON.stringify(this.state.propositions[0])
+      // // console.log("toto")
+      // JSON.parse(this.state.propositions, (key, value) => {
+      //   console.log("azeety")
+      //   console.log(key);            // et on renvoie la valeur inchangée.
+      // });
+
+
       //console.log(this.state.propositions)
 
     })
@@ -96,8 +108,8 @@ class PagePublication extends React.Component {
 
 
   render() {
-    console.log("t'es ici mon bro ");
-    console.log(this.state.propositions[0]['description'])  
+    
+    
 
 
     return (  
@@ -109,13 +121,13 @@ class PagePublication extends React.Component {
               </View>
           </View>
           <FlatList
-             data={[{title: 'Title Text', key: 'item1'}]}
+             data={ this.state.propositions }
              renderItem = {({item, index}) => {
 
               return ( 
                 <Text>
-
-                     {item.title}
+                     {item.description}
+                
                 </Text>
               )
 
