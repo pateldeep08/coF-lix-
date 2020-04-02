@@ -3,81 +3,100 @@ import React from 'react'
 import { StyleSheet, Text, View, Button, Alert, ImageBackground} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {KeyboardAvoidingView} from 'react-native';
-//import tabNom from '../BDD/UserDB'
+
 
 import firebase from 'firebase'
 
-import Confetti from "react-native-confetti"
+import JeRencontre from './JeRencontre'
+import ChoisirTemps from './ChoisirTemps'
+import ChoisirPhotoEvenement from './ChoisirPhotoEvenement'
 
 import bg from "../assets/fond.png"
 import username from "../assets/name.png"
-import Icon from 'react-native-vector-icons/Ionicons'
-import DatePicker from 'react-native-datepicker'
-//import PageDemande from './PageDemande'
 
+import DatePicker from 'react-native-datepicker'
+import DateTimePicker from 'react-native-simple-time-picker'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-class JeDemande extends React.Component {
+
+class CreerEvenement extends React.Component {
+
 
     constructor(props){
         super(props)
         this.state = {
             titre : "", 
-            description : "",  
-            dateFin : "2020-03-13", 
-            image : "",
+            date : "",    
+            description : "",
+            lieu : "", 
+            heure : null,
+            minutes : null,
         }
     }
 
 
-    
 
-    _validerJeDemande(){
+    _chooseTime(){
+        this.props.navigation.navigate('ChoisirTemps')
+    }
 
-        firebase.database().ref().child('demandes').push({
+    _choosePhoto(){
+        this.props.navigation.navigate('ChoisirPhotoEvenement')
+    }
 
-            titre: this.state.titre,
-            description : this.state.description,
-            dateFin : this.state.dateFin
-            //description: this.state.description,
-            //duree: this.state.duree,
-            //userId: 'test'
 
-        }).then(() => {
-            //success callback
-            //console.log('data ', data)
-        }).catch(() => {
-            //error callback
-            //console.log('error ', error)
-        })
+    _validerCreerEvenement(){
 
-        /*
         //On check si tous les champs sont remplis
-        if (this.state.titre != "" && this.state.description != ""){
+        if (this.state.date != "" && this.state.titre != "" && 
+            this.state.description != "" && this.state.lieu != ""){
 
+                firebase.database().ref().child('evenements').push({
+
+                    titre : this.state.titre, 
+                    date : this.state.date,    
+                    description : this.state.description,
+                    lieu : this.state.lieu, 
+                    heure : this.props.route.params.heure,
+                    minutes : this.props.route.params.minutes,
+        
+                }).then(() => {
+                    //success callback
+                    //console.log('data ', data)
+                }).catch(() => {
+                    //error callback
+                    //console.log('error ', error)
+                })
+
+
+            /*
             data.push({
                 titre : this.state.titre,
-                description : this.state.description,
                 date : this.state.date,
-                image : this.state.date,
+                description : this.state.description,
+                lieu : this.state.lieu,
+                heure : this.props.route.params.heure,
+                minutes : this.props.route.params.minutes,
+                image : this.props.route.params.urlphoto,
                   })
 
-          //  this.props.navigation.navigate('PageDemande')
             console.log(data)
+            this.props.navigation.navigate('JeRencontre')
+
+            */
+           this.props.navigation.navigate('JeRencontre')
+
         }
         else Alert.alert('Pop Pop Pop ! Tous les champs ne sont pas remplis !')
 
-        */
-
     }
-
+    
 
     render() {
-        
-        //console.log
-       // console.log(data)
+      
+
 
 
         return(
@@ -86,7 +105,6 @@ class JeDemande extends React.Component {
 
                  
                 <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-
                     
                     <View style={{ flexDirection: 'row'}} >
 
@@ -95,28 +113,12 @@ class JeDemande extends React.Component {
                             placeholder = "  Titre" 
                             placeholderTextColor="#fff" 
                             onChangeText = {(text) => this.setState({titre : text})} 
+                           // maxLength = '30'
                             value = {this.state.titre}
                             label = "Titre"
                             mode = "outlined"
                         />
                     </View>
-
-
-                    <View>
-                        <TextInput 
-                            style = {styles.input2}
-                            placeholder = "  Description" 
-                            onChangeText = {(text) => this.setState({description : text})} 
-                            value = {this.state.description}
-                            label = "Description"
-                            mode = "outlined"
-                        />
-                    </View>
-
-                    <View>
-                        <Text>Date de fin</Text>
-                    </View>
-
 
                     <View style={{ flexDirection: 'row'}} >
 
@@ -124,7 +126,7 @@ class JeDemande extends React.Component {
                         style={{width: 200}}
                         date={this.state.date}
                         mode="date"
-                        placeholder="date de fin"
+                        placeholder="select date"
                         format="YYYY-MM-DD"
                         minDate="2020-01-01"
                         maxDate="2333-01-01"
@@ -145,8 +147,46 @@ class JeDemande extends React.Component {
                         onDateChange={(date) => {this.setState({date: date})}}
                     />
                     </View>
+                        
+                    <Button title = "Choisir Horaire" onPress={()=>this._chooseTime()} 
 
-                    <Button title = "Valider" onPress={()=>this._validerJeDemande()} />
+                    />
+
+                    <View> 
+                        <Text>Heure : {this.props.route.params.heure}h {this.props.route.params.minutes}min</Text>
+                    </View>
+
+
+
+
+                    <View>
+                        <TextInput 
+                            style = {styles.input2}
+                            placeholder = "  Description" 
+                            onChangeText = {(text) => this.setState({description : text})} 
+                           // maxLength = '250'
+                            value = {this.state.description}
+                            label = "Description"
+                            mode = "outlined"
+                        />
+                    </View>
+
+
+                    <View>
+                        <TextInput 
+                            style = {styles.input}
+                            placeholder = "  Lieu"
+                            onChangeText = {(text) => this.setState({lieu : text})}
+                          //  maxLength = '20'
+                            value = {this.state.lieu}
+                            label = "Lieu"
+                            mode = "outlined"
+                        />
+                    </View>
+
+                    <Button title = "Choisir Photo" onPress={()=>this._choosePhoto()} />
+
+                    <Button title = "Valider" onPress={()=>this._validerCreerEvenement()} />
                 </KeyboardAvoidingView>
 
             </ImageBackground>
@@ -161,8 +201,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-evenly',
       opacity:1
-      },
-
+    },
     input : {
         //borderRadius : 20,
         fontSize : 16,
@@ -185,12 +224,12 @@ const styles = StyleSheet.create({
         fontSize : 16,
         width : 320,
         justifyContent: 'center',
-        textAlignVertical: 'top',
+        //textAlignVertical: 'top',
         //borderWidth: 0.5,
         opacity:3,
         backgroundColor : '#fff',
         //padding:'center',
-        height:200,
+        height:130,
         //flex : 1
 
            
@@ -199,9 +238,9 @@ const styles = StyleSheet.create({
         },
 
     input_titre: {
-        fontWeight: 'bold',
-        fontSize: 26,
-        color: '#666666'
+    fontWeight: 'bold',
+    fontSize: 26,
+    color: '#666666'
     },
 
     bg : {
@@ -211,7 +250,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-
     inputIcon:{
         position:'absolute',
         top:10,
@@ -219,4 +257,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default JeDemande
+export default CreerEvenement

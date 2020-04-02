@@ -3,10 +3,10 @@ import 'react-native-gesture-handler';
 import React from 'react'
 import { StyleSheet, Text, View, Button, Alert, ImageBackground, TouchableOpacity } from 'react-native';
 
-
-import JePropose from './JePropose'
-//import JeConsulte from "./JeConsulte"
-//import JeDemande from "./JeDemande"
+import JeRencontre from "./JeRencontre"
+import JePropose from "./JePropose"
+import JeConsulte from "./JeConsulte"
+import JeDemande from "./JeDemande"
 //import JeRencontre from "./JeRencontre"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -50,7 +50,7 @@ export default class Accueil extends React.Component {
                     </View>
 
                     <View style={styles.bottomItem}>
-                        <TouchableOpacity  style={styles.bottomItemInner} >
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('JeDemande')} style={styles.bottomItemInner} >
                             <Text>Je Demande</Text>
 
                         </TouchableOpacity>
@@ -63,13 +63,13 @@ export default class Accueil extends React.Component {
                     </View>
 
                     <View style={styles.bottomItem}>
-                        <TouchableOpacity style={styles.bottomItemInner}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('JeRencontre')} style={styles.bottomItemInner}>
                             <Text>Je Rencontre</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.bottomItem}>
-                        <TouchableOpacity style={styles.bottomItemInner}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('JeConsulte')} style={styles.bottomItemInner}>
                             <Text>Mon espace perso</Text>
                         </TouchableOpacity>
                     </View>

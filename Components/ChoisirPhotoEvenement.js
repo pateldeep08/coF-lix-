@@ -4,13 +4,13 @@ import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import JePropose from './JePropose';
+import CreerEvenement from './CreerEvenement'
 
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-export default class ChoisirPhoto extends React.Component {
+export default class ChoisirPhotoEvenement extends React.Component {
   state = {
     image: null,
   };
@@ -26,7 +26,7 @@ export default class ChoisirPhoto extends React.Component {
       console.log(data)
       
 
-      this.props.navigation.navigate('JePropose', {urlphoto : this.state.image})
+      this.props.navigation.navigate('CreerEvenement', {urlphoto : this.state.image})
   }
 
   render() {

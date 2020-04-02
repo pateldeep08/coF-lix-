@@ -19,10 +19,6 @@ class PagePublication extends React.Component {
     })
 
     //this.itemsRef = this.getRef().child('proposition')
-
-
-
-
   }
 
   /*
@@ -55,6 +51,7 @@ class PagePublication extends React.Component {
   }
 
 */
+
   componentDidMount(){
 
     const THIS = this

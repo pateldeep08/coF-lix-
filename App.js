@@ -26,6 +26,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Accueil from './Components/Accueil'
 import init from './Components/init'
 import JePropose from './Components/JePropose'
+
 import ChoisirPhoto from './Components/ChoisirPhoto'
 import PagePublication from './Components/PagePublication'
 
@@ -33,9 +34,20 @@ import PagePublication from './Components/PagePublication'
 import stackAccueil from "./Components/stackAccueil"
 import { createStore } from 'redux';
 
-import allReducers from './Redux/reducers/reducersIndex'
+//import allReducers from './Redux/reducers/reducersIndex'
+import JeDemande from './Components/JeDemande';
+import JeConsulte from './Components/JeConsulte';
+import PageDemande from './Components/PageDemande';
+import DemandeItems from './Components/DemandeItems';
+import JeRencontre from './Components/JeRencontre';
+import CreerEvenement from './Components/CreerEvenement';
+import EvenementItems from './Components/EvenementItems'
+//import ChoisirPhotoEvenement from './Components/ChoisirPhotoEvenement'
+import ChoisirTemps from './Components/ChoisirTemps'
 
-const store = createStore(allReducers)
+
+
+//const store = createStore(allReducers)
 
 /*
 life cycle 
@@ -104,7 +116,7 @@ export default class App extends React.Component {
     return (
 
 
-        <Provider store={store}>
+
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen name="init" component={init} />
@@ -114,12 +126,22 @@ export default class App extends React.Component {
               <Stack.Screen name="JePropose" component={JePropose} />
               <Stack.Screen name="ChoisirPhoto" component={ChoisirPhoto} />
               <Stack.Screen name="PagePublication" component={PagePublication} />
+              <Stack.Screen name="JeDemande" component={JeDemande} />
+              <Stack.Screen name="JeConsulte" component={JeConsulte} />
+              <Stack.Screen name="PageDemande" component={PageDemande} />
+              <Stack.Screen name="JeRencontre" component={JeRencontre} />
+              <Stack.Screen name="EvenementItems" component={EvenementItems} />
+              <Stack.Screen name="CreerEvenement" component={CreerEvenement} initialParams={{heure : null}, {minutes : null}}/>
+
+              <Stack.Screen name="ChoisirTemps" component={ChoisirTemps} />
+
+
 
               
             </Stack.Navigator>
           </NavigationContainer>
 
-        </Provider>
+
    
 
     

@@ -16,9 +16,9 @@ class JePropose extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            titre : "a", 
-            description : "a",  
-            duree : "a", 
+            titre : "", 
+            description : "",  
+            duree : "", 
             image:"",
             id_user: "",
             json:{}
@@ -30,9 +30,11 @@ class JePropose extends React.Component {
         //On check si tous les champs sont remplis
         if (this.state.titre != "" && this.state.description != "" && this.state.duree != ""){
 
-            firebase.database().ref().child('proposition').push({
+            firebase.database().ref().child('propositions').push({
 
                 titre: this.state.titre,
+                description : this.state.description,
+                duree : this.state.duree
                 //description: this.state.description,
                 //duree: this.state.duree,
                 //userId: 'test'
