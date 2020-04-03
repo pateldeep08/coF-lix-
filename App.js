@@ -44,6 +44,10 @@ import CreerEvenement from './Components/CreerEvenement';
 import EvenementItems from './Components/EvenementItems'
 //import ChoisirPhotoEvenement from './Components/ChoisirPhotoEvenement'
 import ChoisirTemps from './Components/ChoisirTemps'
+import DetailEvenementItems from './Components/DetailEvenementItems';
+
+import DetailDemandeItems from './Components/DetailDemandeItems'
+import DetailPropositionItems from './Components/DetailPropositionItems'
 
 
 
@@ -132,8 +136,14 @@ export default class App extends React.Component {
               <Stack.Screen name="JeRencontre" component={JeRencontre} />
               <Stack.Screen name="EvenementItems" component={EvenementItems} />
               <Stack.Screen name="CreerEvenement" component={CreerEvenement} initialParams={{heure : null}, {minutes : null}}/>
-
+              
               <Stack.Screen name="ChoisirTemps" component={ChoisirTemps} />
+              <Stack.Screen name="DetailEvenementItems" component={DetailEvenementItems} />
+              <Stack.Screen name="DetailDemandeItems" component={DetailDemandeItems} />
+              <Stack.Screen name="DemandeItems" component={DemandeItems} />
+              <Stack.Screen name="DetailPropositionItems" component={DetailPropositionItems} />
+
+              
 
 
 

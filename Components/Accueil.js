@@ -57,7 +57,7 @@ export default class Accueil extends React.Component {
                     </View>
 
                     <View style={styles.bottomItem}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('PagePublication')} style={styles.bottomItemInner}>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('JeConsulte')} style={styles.bottomItemInner}>
                             <Text>Je Consulte</Text>
                         </TouchableOpacity>
                     </View>
@@ -69,7 +69,7 @@ export default class Accueil extends React.Component {
                     </View>
 
                     <View style={styles.bottomItem}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('JeConsulte')} style={styles.bottomItemInner}>
+                        <TouchableOpacity style={styles.bottomItemInner}>
                             <Text>Mon espace perso</Text>
                         </TouchableOpacity>
                     </View>

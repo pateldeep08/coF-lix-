@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
-
+import { StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 import CreerEvenement from './CreerEvenement'
 
 
@@ -8,23 +7,16 @@ class EvenementItems extends React.Component {
   render() {
 
     const evenements = this.props.evenements
-
+    const DetailEvenement = this.props.DetailEvenement
 
 
   
 
-
-
-
-
-
-
-
-
-
     return (
       
-      <View style={styles.main_container}>
+      <TouchableOpacity
+        onPress={() => DetailEvenement(evenements.heure,evenements.titre,evenements.description,evenements.minutes,evenements.date,evenements.lieu) }
+        style={styles.main_container}>
 
         <Image
           style={styles.image}
@@ -43,7 +35,7 @@ class EvenementItems extends React.Component {
             <Text style={styles.lieu_text}>{evenements.lieu}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

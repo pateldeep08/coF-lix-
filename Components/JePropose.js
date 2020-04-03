@@ -20,8 +20,8 @@ class JePropose extends React.Component {
             description : "",  
             duree : "", 
             image:"",
-            id_user: "",
-            json:{}
+            id_user: "",      
+            json:{}                  
         }
     }
 
@@ -64,6 +64,8 @@ class JePropose extends React.Component {
         sleep(1000).then(()=>{
 
             this.props.navigation.navigate('Accueil')
+            this.props.navigation.navigate('JeConsulte')
+   
 
         })
 

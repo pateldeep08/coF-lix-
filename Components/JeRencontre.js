@@ -7,11 +7,9 @@ import firebase from 'firebase'
 import CreerEvenement from './CreerEvenement'
 import bg from "../assets/fond.png"
 import username from "../assets/name.png"
-
+import DetailEvenementItems from './DetailEvenementItems'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-
 import EvenementItems from './EvenementItems'
 import InvertedFlatlist from 'react-native-inverted-flat-list';
 
@@ -21,7 +19,9 @@ class JeRencontre extends React.Component {
         super(props)
         this.state = {
 
-            evenements : []
+            evenements : [],
+            //description:"",
+            //titre :"",
 
         }
     }
@@ -53,13 +53,14 @@ class JeRencontre extends React.Component {
           this.setState({
             evenements : evenements
           })
-    
-
-    
         })
     
   
     }
+
+   _afficherDetailEvenement = (heure,titre,description,minutes,date,lieu)=>{
+      this.props.navigation.navigate("DetailEvenementItems",{heure: heure,titre:titre,description: description,minutes:minutes,date:date,lieu:lieu})
+   }
 
     _validerJeRencontre(){
         this.props.navigation.navigate('CreerEvenement')
@@ -85,7 +86,7 @@ class JeRencontre extends React.Component {
                       </View>
                       <InvertedFlatlist
                          data={this.state.evenements}
-                         renderItem={({item}) => <EvenementItems evenements={item}/>}
+                         renderItem={({item}) => <EvenementItems evenements={item} DetailEvenement = {this._afficherDetailEvenement}/>}
                       />
                       <View style={styles.button}>
 

@@ -1,16 +1,21 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
-import publications from '../BDD/JeProposeDB'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+
+
 
 
 class PublicationItems extends React.Component {
   render() {
 
     const publications = this.props.publications
+    const DetailProposition = this.props.DetailProposition
 
     return (
       
-      <View style={styles.main_container}>
+      <TouchableOpacity 
+        onPress={() => DetailProposition(publications.titre,publications.description,publications.dateFin) }
+        style={styles.main_container}>
+  
 
         <Image
           style={styles.image}
@@ -27,7 +32,7 @@ class PublicationItems extends React.Component {
             <Text style={styles.date_text}>{publications.duree}</Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

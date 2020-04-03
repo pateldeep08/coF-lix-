@@ -1,12 +1,9 @@
 import 'react-native-gesture-handler';
 import React from 'react'
 import { StyleSheet, View, Text, FlatList, Image } from 'react-native'
-
 import DemandeItems from './DemandeItems'
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import InvertedFlatlist from 'react-native-inverted-flat-list';
 import firebase from 'firebase'
 
@@ -32,7 +29,6 @@ class PageDemande extends React.Component {
           const demandes = []
           childSnapshot.forEach((doc) => {
             demandes.push({
-
                   key : doc.key,
                   description : doc.val().description,
                   dateFin : doc.val().dateFin,
@@ -74,6 +70,10 @@ class PageDemande extends React.Component {
     }
 
 
+  _afficherDetailDemande = (titre,description,dateFin)=>{
+      this.props.navigation.navigate("DetailDemandeItems",{titre:titre,description: description,dateFin:dateFin})
+   }
+
   render() {
     
     return (  
@@ -85,8 +85,8 @@ class PageDemande extends React.Component {
               </View>
           </View>
           <InvertedFlatlist
-              data={this.state.demandes}
-              renderItem={({item}) => <DemandeItems demandes={item} />}
+            data={this.state.demandes}
+            renderItem={({item}) => <DemandeItems demandes={item} DetailDemande={this._afficherDetailDemande}/>}
           />
       </View>
     )

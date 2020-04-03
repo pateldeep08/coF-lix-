@@ -1,9 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
-
 import PageDemande from './PageDemande'
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -12,11 +10,12 @@ class DemandeItems extends React.Component {
   render() {
 
     const demandes = this.props.demandes
+    const DetailDemande = this.props.DetailDemande
 
     return (
       
       <TouchableOpacity 
-      //onPress={() => this.props.navigation.navigate('DetailItems')} 
+      onPress={() => DetailDemande(demandes.titre,demandes.description,demandes.dateFin) }
       style={styles.main_container}>
 
 
@@ -30,7 +29,7 @@ class DemandeItems extends React.Component {
             <Text style={styles.title_text}>{demandes.titre}</Text>
           </View>
           <View style={styles.description_container}>
-            <Text style={styles.description_text} numberOfLines={5}>{demandes.description}</Text>
+            <Text style={styles.description_text} numberOfLines={3}>{demandes.description}</Text>
           </View>
           <View style={styles.date_container}>
             <Text style={styles.date_text}>Jusqu'au {demandes.dateFin}</Text>
