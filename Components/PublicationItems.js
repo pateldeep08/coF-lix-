@@ -13,11 +13,11 @@ class PublicationItems extends React.Component {
     const DetailProposition = this.props.DetailProposition
 
     return (
-      
+
       <TouchableOpacity 
         onPress={() => DetailProposition(publications.titre,publications.description,publications.dateFin) }
         style={styles.main_container}>
-  
+
 
         <Image
           style={styles.image}
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     //marginTop : 30,
     justifyContent: 'space-between',
     //alignItems : 'center'
-  
+
   },
   header_container: {
    // flex: 3,
@@ -105,10 +105,10 @@ const styles = StyleSheet.create({
     //flex : 1,
     alignItems : 'center',
     margin : 20,
- 
+
   }
 })
 
 
 
-export default PublicationItems
+export default PublicationItems 

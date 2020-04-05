@@ -26,13 +26,13 @@ class JeDemande extends React.Component {
         this.state = {
             titre : "", 
             description : "",  
-            dateFin : "2020-03-13", 
+            dateFin : "", 
             image : "",
         }
     }
 
 
-    
+
 
     _validerJeDemande(){
 
@@ -58,26 +58,23 @@ class JeDemande extends React.Component {
         /*
         //On check si tous les champs sont remplis
         if (this.state.titre != "" && this.state.description != ""){
-
             data.push({
                 titre : this.state.titre,
                 description : this.state.description,
                 date : this.state.date,
                 image : this.state.date,
                   })
-
           //  this.props.navigation.navigate('PageDemande')
             console.log(data)
         }
         else Alert.alert('Pop Pop Pop ! Tous les champs ne sont pas remplis !')
-
         */
 
     }
 
 
     render() {
-        
+
         //console.log
        // console.log(data)
 
@@ -86,10 +83,10 @@ class JeDemande extends React.Component {
 
             <ImageBackground source = {bg} style = {styles.bg}>
 
-                 
+
                 <KeyboardAvoidingView style={styles.container}>
 
-                    
+
                     <View style={{ flexDirection: 'row'}} >
 
                         <TextInput 
@@ -124,7 +121,7 @@ class JeDemande extends React.Component {
 
                         <DatePicker
                         style={{width: 200}}
-                        date={this.state.date}
+                        date={this.state.dateFin}
                         mode="date"
                         placeholder="date de fin"
                         format="YYYY-MM-DD"
@@ -142,9 +139,9 @@ class JeDemande extends React.Component {
                           dateInput: {
                             marginLeft: 36
                           }
-                          
+
                         }}
-                        onDateChange={(date) => {this.setState({date: date})}}
+                        onDateChange={(date) => {this.setState({dateFin: date})}}
                     />
                     </View>
 
@@ -177,7 +174,7 @@ const styles = StyleSheet.create({
         height:45,
        // flex : 1
 
-       
+
        //backgroundColor :'rgb(59,22,4)'
        backgroundColor : 'rgb(255,255,255)'
         }, 
@@ -195,7 +192,7 @@ const styles = StyleSheet.create({
         height:200,
         //flex : 1
 
-           
+
        //backgroundColor :'rgb(59,22,4)'
        backgroundColor : 'rgb(255,255,255)'
         },
@@ -221,4 +218,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default JeDemande
+export default JeDemande 

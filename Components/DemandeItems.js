@@ -14,7 +14,7 @@ class DemandeItems extends React.Component {
     const DetailDemande = this.props.DetailDemande
 
     return (
-      
+
       <TouchableOpacity 
       onPress={() => DetailDemande(demandes.titre,demandes.description,demandes.dateFin, demandes.prenom, demandes.numTel) }
       style={styles.main_container}>
@@ -24,7 +24,7 @@ class DemandeItems extends React.Component {
           style={styles.image}
           //source={{uri: demandes.image}}
         />
-  
+
         <View style={styles.content_container}>
 
 
@@ -35,12 +35,12 @@ class DemandeItems extends React.Component {
 
           <View style={styles.description_icon}>
             <Entypo name="text" size={32} color="#98d2c1"  />
-            <Text style={styles.description_text} numberOfLines={6}>   {demandes.description}</Text>
+            <Text style={styles.description_text} numberOfLines={2}>   {demandes.description}</Text>
           </View>
 
           <View style={styles.description_icon}>
               <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
-              <Text style={styles.date_text}>    Bessoin avant le : {demandes.dateFin}</Text>
+              <Text style={styles.date_text}>    Besoin avant le : {demandes.dateFin}</Text>
           </View>
 
         </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   content_container: {
     flex: 1,
     margin: 5
-  
+
   },
   header_container: {
     flex: 3,
@@ -106,10 +106,10 @@ const styles = StyleSheet.create({
     //flex : 1,
     alignItems : 'center',
     margin : 20,
- 
+
   }
 })
 
 
 
-export default DemandeItems
+export default DemandeItems 

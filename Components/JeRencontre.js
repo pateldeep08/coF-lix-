@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import { StyleSheet, Text, View, Button, Alert, ImageBackground, FlatList} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert, ImageBackground, FlatList, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import {KeyboardAvoidingView} from 'react-native';
 import firebase from 'firebase'
@@ -12,6 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EvenementItems from './EvenementItems'
 import InvertedFlatlist from 'react-native-inverted-flat-list';
+
 
 class JeRencontre extends React.Component {
 
@@ -74,30 +75,35 @@ class JeRencontre extends React.Component {
 
         return(
 
-            //<ImageBackground source = {bg} style = {styles.bg}>
+  
 
                 <View style={styles.main_container}> 
                 
-                      <View style={styles.title_page}>
-                          <View> 
-                             <Text> </Text>
-                             <Text>Listes des évènements</Text>
-                          </View>
-                      </View>
+
                       <InvertedFlatlist
-                         data={this.state.evenements}
-                         renderItem={({item}) => <EvenementItems evenements={item} DetailEvenement = {this._afficherDetailEvenement}/>}
+                        style = {styles.flat}   
+                        data={this.state.evenements}
+                        renderItem={({item}) => <EvenementItems evenements={item} DetailEvenement = {this._afficherDetailEvenement}/>}
                       />
-                      <View style={styles.button}>
 
-                        <Button title = "Créer un évènement" onPress={()=>this._validerJeRencontre()} />
+
+                      <View style = {styles.buttonContainer}>
+                        <TouchableOpacity
+                          onPress={()=>this._validerJeRencontre()} 
+                          style={styles.button}>
+                          
+                          <Text>Créer un événement</Text>
+                              
+                        </TouchableOpacity>
 
                       </View>
+
+
 
                 </View>
 
 
-            // </ImageBackground>
+            
         )
     }
 }
@@ -132,8 +138,28 @@ const styles = StyleSheet.create({
     },
     button:{
     alignItems: 'center',
+    borderWidth:1,
+    height:50,
+    width:300,
+    borderRadius:100,
+    justifyContent:'center',
+    marginLeft:55,
+    backgroundColor:"#98d2c1",
+    elevation:10,
+    borderColor:"#98d2c1",
+    marginBottom:5,
+    marginTop : 5,
+
     // back: 20,
   },
+  flat : {
+    backgroundColor : "#98d2c1",
+  },
+  buttonContainer:{
+    backgroundColor:'rgba(0, 0, 0, 0)',
+   // backgroundColor: 'white',
+   // opacity: 0.7
+  }
   });
 
 export default JeRencontre

@@ -41,7 +41,7 @@ class JePropose extends React.Component {
                 //description: this.state.description,
                 //duree: this.state.duree,
                 //userId: 'test'
-    
+
             }).then(() => {
                 //success callback
                 //console.log('data ', data)
@@ -68,19 +68,19 @@ class JePropose extends React.Component {
 
             this.props.navigation.navigate('Accueil')
             this.props.navigation.navigate('JeConsulte')
-   
+
 
         })
 
         this.getProposition()
 
-        
-    
+
+
     }
 
     getProposition(){
 
-        
+
 
        // var userId = this.props.route.params.userName
 
@@ -91,14 +91,13 @@ class JePropose extends React.Component {
             console.log(username)
            // ...
         });
-
         */
 
       //  console.log(userId)
 
         const json = this.state
         const aff = this
-        
+
         firebase.database().ref().child('Proposition').on('value', (data) => {
           var a;
           // console.log(data.toJSON())
@@ -111,16 +110,16 @@ class JePropose extends React.Component {
          //   aff.affichageJSON(json.json)
          //   console.log(json.json);
         });
-        
-            
+
+
        //console.log(this.state.json)
-      
+
       //console.log("------------")
       //console.log(a)
       //console.log(propositions)
-     
+
     }
-    
+
     affichageJSON(json){
         //parse le json pour le lire
         const obj = JSON.stringify(json)
@@ -130,7 +129,7 @@ class JePropose extends React.Component {
         // console.log("afficahe json ")
         // console.log(resultat);
         // this.state.json = resultat
-        
+
     }
 
     show() {
@@ -142,7 +141,7 @@ class JePropose extends React.Component {
     }
 
     render() {
-        
+
         return(
 
                 <KeyboardAvoidingView style={styles.container}>
@@ -154,7 +153,7 @@ class JePropose extends React.Component {
                             <TextInput 
                                 style = {styles.input}
                                 placeholder = "  Titre" 
-                              
+
                                 onChangeText = {(text) => this.setState({titre : text})} 
                                 value = {this.state.titre}
                                 label = "Titre"
@@ -178,30 +177,29 @@ class JePropose extends React.Component {
                         <View style={{ flexDirection: 'row'}} >
 
                             <DatePicker
-                                style={styles.date}
-                                date={this.state.duree}
-                                mode="date"
-                                placeholder="select date"
-                                format="YYYY-MM-DD"
-                                minDate="2020-01-01"
-                                maxDate="2333-01-01"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                customStyles={{
-                                dateIcon: {
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 4,
-                                    marginLeft: 0
-                                },
-                                dateInput: {
-                                    marginLeft: 36
-                                }
-                                
-                                }}
-                                onChangeText = {(text) => this.setState({duree : text})}
-                            />
+                            style={{width: 200}}
+                            date={this.state.duree}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate="2020-01-01"
+                            maxDate="2333-01-01"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                              dateIcon: {
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0
+                              },
+                              dateInput: {
+                                marginLeft: 36
+                              }
 
+                            }}
+                            onDateChange={(date) => {this.setState({duree: date})}}
+                        />
                         </View>
 
                         <View >
@@ -211,7 +209,7 @@ class JePropose extends React.Component {
                                 style={{ backgroundColor: 'green' }}
                             />
                         </View>
-                        
+
                         <View style = {styles.buttonContainer}>
 
                             <TouchableOpacity 
@@ -227,7 +225,7 @@ class JePropose extends React.Component {
                             </TouchableOpacity>
 
                         </View>
-                        
+
 
                     </View>
 
@@ -262,13 +260,13 @@ const styles = StyleSheet.create({
         width : 320,
         justifyContent: 'space-between',
         //borderWidth: 20,
-   
+
         backgroundColor : '#fff',
         //padding:'center',
         height:60,
        // textAlign: 'center',
        paddingLeft : 10,
-        
+
         borderRadius : 20,
         //flex : 1
         borderWidth :2,
@@ -277,7 +275,7 @@ const styles = StyleSheet.create({
         //textAlign: 'center',
        // flex : 1
 
-       
+
        //backgroundColor :'rgb(59,22,4)'
       // backgroundColor : 'rgb(255,255,255)'
         }, 
@@ -302,7 +300,7 @@ const styles = StyleSheet.create({
        paddingLeft : 10,
        paddingTop : 14,
 
-           
+
        //backgroundColor :'rgb(59,22,4)'
        backgroundColor : 'rgb(255,255,255)'
         },
@@ -325,11 +323,12 @@ const styles = StyleSheet.create({
         top:10,
         left:37
     },
+
     date : {
         width : 200,
-        borderRadius : 20,
-        borderColor : "#98d2c1",
-        margin : '5%'
+        //borderRadius : 20,
+        //borderColor : "#98d2c1",
+        //margin : '5%'
     },
     buttonContainer:{
         flexDirection : 'row',
@@ -346,7 +345,7 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         paddingBottom : 11,
         elevation : 10
-    
+
     },
     buttonPhoto:{
         margin : "5%",
@@ -364,4 +363,4 @@ const styles = StyleSheet.create({
 
   });
 
-export default JePropose
+export default JePropose 

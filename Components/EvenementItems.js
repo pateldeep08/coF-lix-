@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 import CreerEvenement from './CreerEvenement'
+import { Ionicons, Entypo, FontAwesome, Foundation, EvilIcons,MaterialIcons} from '@expo/vector-icons';
 
 
 class EvenementItems extends React.Component {
@@ -24,16 +25,26 @@ class EvenementItems extends React.Component {
         />
 
         <View style={styles.content_container}>
+
           <View style={styles.header_container}>
             <Text style={styles.title_text}>{evenements.titre}</Text>
           </View>
+
           <View style={styles.description_container}>
-            <Text style={styles.description_text} numberOfLines={3}>{evenements.description}</Text>
-            <Text style={styles.date_text}>Le {evenements.date} à {evenements.heure}h {evenements.minutes}min</Text>
+            <Entypo name="text" size={32} color="#98d2c1"/>
+            <Text style={styles.description_text} numberOfLines={3}>  {evenements.description}</Text>
           </View>
-          <View style={styles.date_container}>
-            <Text style={styles.lieu_text}>{evenements.lieu}</Text>
+
+          <View style = {styles.calendar}>
+            <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon}/>
+            <Text style={styles.date_text}>    Le {evenements.date} à {evenements.heure}h {evenements.minutes}min</Text>
           </View>
+
+          <View style={styles.lieu}>
+            <MaterialIcons name="place" size={32} color="#98d2c1" style={styles.icon} />
+            <Text style={styles.lieu_text}>    {evenements.lieu}</Text>
+          </View>
+
         </View>
       </TouchableOpacity>
     )
@@ -43,20 +54,29 @@ class EvenementItems extends React.Component {
 const styles = StyleSheet.create({
   main_container: {
     height: 190,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor : 'white',
+    margin : 3,
+    borderRadius : 25,
+    justifyContent: 'center',
+    alignItems : 'center',
+   // marginLeft : 
   },
   image: {
     width: 120,
-    height: 180,
+    height: 170,
     margin: 5,
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems : 'center',
+    marginLeft : 10
   },
   content_container: {
-    flex: 1,
+   // flex: 1,
     margin: 5
   },
   header_container: {
-    flex: 3,
+    //flex: 1,
     flexDirection: 'row'
   },
   title_text: {
@@ -67,11 +87,15 @@ const styles = StyleSheet.create({
     paddingRight: 5
   },
   description_container: {
-    flex: 5
+   // flex: 5,
+    flexDirection:'row',
+    alignItems:'center'
   },
   description_text: {
     fontStyle: 'italic',
-    color: '#666666'
+    color: '#666666',
+    margin:10,
+    //marginLeft:
   },
   date_container: {
     flex: 1
@@ -82,7 +106,18 @@ const styles = StyleSheet.create({
   },
   date_text: {
     textAlign: 'left',
-    fontSize: 14
+    fontSize: 14,
+    
+  },
+  calendar:{
+    flexDirection:'row',
+    alignItems:'center',
+    margin : 10
+  },
+  lieu:{
+    flexDirection:'row',
+    alignItems:'center',
+    margin : 10
   }
 })
 
