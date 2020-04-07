@@ -10,13 +10,15 @@ class EvenementItems extends React.Component {
     const evenements = this.props.evenements
     const DetailEvenement = this.props.DetailEvenement
 
+    console.log(evenements.key)
+
 
   
 
     return (
       
       <TouchableOpacity
-        onPress={() => DetailEvenement(evenements.heure,evenements.titre,evenements.description,evenements.minutes,evenements.date,evenements.lieu) }
+        onPress={() => DetailEvenement(evenements.heure,evenements.titre,evenements.description,evenements.minutes,evenements.date,evenements.lieu, evenements.key) }
         style={styles.main_container}>
 
         <Image

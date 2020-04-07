@@ -1,11 +1,15 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import { StyleSheet, View, Text, Image,ScrollView, TouchableOpacity} from 'react-native'
+import { StyleSheet, View, Text, Image,ScrollView, TouchableOpacity, FlatList} from 'react-native'
 import CreerEvenement from './CreerEvenement'
 import EvenementItems from './EvenementItems'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, Entypo, FontAwesome, Foundation, EvilIcons,MaterialIcons} from '@expo/vector-icons';
+import firebase from 'firebase'
+
+import Participants from './Participants'
+
 
 
 class DetailEvenementItems extends React.Component {
@@ -14,15 +18,61 @@ class DetailEvenementItems extends React.Component {
     super(props)
     this.state = {
 
-      press : false 
+      press : false ,
+      key : this.props.route.params.key,
+      participants : [],
+      isParticipe : false 
+
 
     }
   }
 
+  componentDidMount(){
 
-  press(){
+    const THIS = this
 
-    this.setState({press:true})
+    firebase.database().ref().child('evenements/'+ this.state.key + '/participants').on('value', (childSnapshot) => {
+
+      const participants = []
+      childSnapshot.forEach((doc) => {
+        participants.push({
+              key : doc.key,
+              nom : doc.val().nom,
+            }
+        );
+      })
+
+      this.setState({
+        participants : participants
+      })
+    })
+  }
+
+
+  jeParticipe(){
+
+    firebase.database().ref().child('evenements/'+ this.state.key + '/participants').push({
+
+      nom : firebase.auth().currentUser.displayName, 
+
+    }).then(() => {
+      //success callback
+      //console.log('data ', data)
+    }).catch(() => {
+      //error callback
+      //console.log('error ', error)
+    })
+
+    this.setState({isParticipe:true})
+
+  }
+
+  jeParticipePas(){
+
+    this.setState({isParticipe:true})
+
+
+
   }
 
   render() {
@@ -33,7 +83,7 @@ class DetailEvenementItems extends React.Component {
     const minutes = this.props.route.params.minutes
     const date = this.props.route.params.date
     const lieu = this.props.route.params.lieu
-    
+
     return (
 
       <View style = {styles.flexContainer}>
@@ -84,50 +134,36 @@ class DetailEvenementItems extends React.Component {
             <Text>  Marie</Text>
           </View>
 
-          <View style={styles.description_icon}>
-            <FontAwesome name="check-circle" size={32} color="green" style={styles.icon} />
-            <Text>  Gaspard</Text>
-          </View>
-
-          <View style={styles.description_icon}>
-            <Entypo name="circle-with-cross" size={32} color="red" style={styles.icon} />
-            <Text> Chloé</Text>
-          </View>
-
-          <View style={styles.description_icon}>
-            <FontAwesome name="check-circle" size={32} color="green" style={styles.icon} />
-            <Text>  Diego</Text>
-          </View>
-
-          {this.state.press ? 
-          <View style={styles.description_icon}>
-            <FontAwesome name="check-circle" size={32} color="green" style={styles.icon} />
-            <Text>  A def</Text>
-          </View>
-
-          : <Text></Text>}
-
-  
+          <FlatList
+            //style = {styles.flat}   
+            data={this.state.participants}
+            renderItem={({item}) => <Participants participants={item}/>}
+          />
 
         </View>
 
       </View>
     </ScrollView>
 
+
+    { this.state.isParticipe ? null : 
+
+    
     <View style = {styles.buttonContainer}>
 
       <TouchableOpacity
         style={styles.buttonParticipe}
-        onPress={()=>this.press()}>
+        onPress={()=>this.jeParticipe()}>
         <Text>Je Participe</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={styles.button}>
+        style={styles.button}
+        onPress={()=>this.jeParticipePas()}>
         <Text>Je Participe pas</Text>
       </TouchableOpacity>
 
-    </View>
+    </View>}
 
     </View>
 )
@@ -190,6 +226,8 @@ marginLeft: 10,
 marginRight: 10,
 marginTop: 10,
 borderRadius : 25,
+//paddingBottom : 50,
+marginBottom : 10
 //borderWidth : 1,
 // borderColor : "red"
 
@@ -269,7 +307,8 @@ buttonContainer : {
 participantsContainer:{
   flexDirection:'row',
   alignItems:'center',
-  marginTop : 20
+  marginTop : 20,
+  //marginBottom : 50
 },
 flexContainer:{
   flex:1
@@ -278,7 +317,7 @@ participants:{
   marginLeft: 30,
   //sflexDirection:'column',
   marginTop : 10,
-  marginBottom : 10
+  marginBottom : 25
 
 }
 

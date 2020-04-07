@@ -55,7 +55,7 @@ class PagePublication extends React.Component {
 
               return ( 
                 <Text>
-                     {item.description}
+                  {item.description}
                 
                 </Text>
               )

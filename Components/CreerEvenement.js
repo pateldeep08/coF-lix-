@@ -61,6 +61,7 @@ class CreerEvenement extends React.Component {
                     lieu : this.state.lieu, 
                     heure : this.props.route.params.heure,
                     minutes : this.props.route.params.minutes,
+                    participants : null 
         
                 }).then(() => {
                     //success callback

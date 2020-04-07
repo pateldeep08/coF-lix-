@@ -59,8 +59,8 @@ class JeRencontre extends React.Component {
   
     }
 
-   _afficherDetailEvenement = (heure,titre,description,minutes,date,lieu)=>{
-      this.props.navigation.navigate("DetailEvenementItems",{heure: heure,titre:titre,description: description,minutes:minutes,date:date,lieu:lieu})
+   _afficherDetailEvenement = (heure,titre,description,minutes,date,lieu,key)=>{
+      this.props.navigation.navigate("DetailEvenementItems",{heure: heure,titre:titre,description: description,minutes:minutes,date:date,lieu:lieu,key:key})
    }
 
     _validerJeRencontre(){
@@ -69,6 +69,8 @@ class JeRencontre extends React.Component {
     }
 
     render() {
+
+     console.log(this.state.evenements)
       
 
 
