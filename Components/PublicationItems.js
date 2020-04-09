@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { Ionicons, Entypo, FontAwesome, Foundation, EvilIcons} from '@expo/vector-icons';
 
 
-
+const COULEUR = 'rgb(130,32,70)'
 
 class PublicationItems extends React.Component {
   render() {
@@ -30,12 +30,12 @@ class PublicationItems extends React.Component {
           </View>
 
           <View style={styles.description_icon}>
-            <Entypo name="text" size={32} color="#98d2c1"  />
+            <Entypo name="text" size={32} color='rgb(130,32,70)'  />
             <Text style={styles.description_text} numberOfLines={6}>   {publications.description}</Text>
           </View>
 
           <View style={styles.description_icon}>
-              <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
+              <Entypo name="calendar" size={32} color='rgb(130,32,70)' style={styles.icon} />
               <Text >    Disponible jusqu'au : {publications.dateFin}</Text>
           </View>
 
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems : 'center',
    // marginLeft : 
+    //marginTop : 10
   },
   image: {
     width: 120,

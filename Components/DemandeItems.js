@@ -20,26 +20,21 @@ class DemandeItems extends React.Component {
       style={styles.main_container}>
 
 
-        <Image
-          style={styles.image}
-          //source={{uri: demandes.image}}
-        />
+
 
         <View style={styles.content_container}>
-
-
 
           <View style={styles.header_container}>
             <Text style={styles.title_text}>{demandes.titre}</Text>
           </View>
 
           <View style={styles.description_icon}>
-            <Entypo name="text" size={32} color="#98d2c1"  />
+            <Entypo name="text" size={32} color="rgb(133,105,177)"  />
             <Text style={styles.description_text} numberOfLines={2}>   {demandes.description}</Text>
           </View>
 
           <View style={styles.description_icon}>
-              <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
+              <Entypo name="calendar" size={32} color="rgb(133,105,177)" style={styles.icon} />
               <Text style={styles.date_text}>    Besoin avant le : {demandes.dateFin}</Text>
           </View>
 
@@ -78,14 +73,16 @@ const styles = StyleSheet.create({
   },
   header_container: {
     flex: 3,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginLeft:15,
+    marginTop:8
   },
   title_text: {
     fontWeight: 'bold',
     fontSize: 20,
     flex: 1,
     flexWrap: 'wrap',
-    paddingRight: 5
+    paddingRight: 15
   },
   description_container: {
     flex: 7

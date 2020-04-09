@@ -22,7 +22,7 @@ class DetailPropositionItems extends React.Component {
         <Text style={styles.title_text}>{titre}</Text>
 
         <View style={styles.description_icon}>
-          <Entypo name="text" size={32} color="#98d2c1"  />
+          <Entypo name="text" size={32} color='rgb(130,32,70)'  />
           <Text>  Description : </Text>
         </View>
 
@@ -31,28 +31,28 @@ class DetailPropositionItems extends React.Component {
         </View>
 
         <View style={styles.description_icon}>
-          <Ionicons name="md-information-circle" size={32} color="#98d2c1" style={styles.icon} />
+          <Ionicons name="md-information-circle" size={32} color='rgb(130,32,70)' style={styles.icon} />
           <Text>  Information Pratique : </Text>
         </View>
 
         <View style={styles.info}>
-          <FontAwesome name="user" size={32} color="#98d2c1" style={styles.icon} />
+          <FontAwesome name="user" size={32} color='rgb(130,32,70)' style={styles.icon} />
           <Text>        Proposé par :</Text>
         </View>
 
         <View style={styles.info}>
-          <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
+          <Entypo name="calendar" size={32} color='rgb(130,32,70)' style={styles.icon} />
           <Text>    Proposé jusqu'au : {dateFin}</Text>
         </View>
 
         <View style={styles.info}>
-          <Foundation name="telephone" size={32} color="#98d2c1" style={styles.icon} />
+          <Foundation name="telephone" size={32} color='rgb(130,32,70)' style={styles.icon} />
           <Text>       +33 6 52 05 80 56</Text>
         </View>
 
         <TouchableOpacity
           style={styles.button}>
-          <Text>J'aide</Text>
+          <Text style={styles.textButton}>J'aide</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -76,7 +76,7 @@ justifyContent: 'center'
 },
 scrollview_container: {
 flex: 1,
-backgroundColor : "#98d2c1",
+backgroundColor : 'rgb(130,32,70)',
 },
 image: {
 height: 169,
@@ -100,14 +100,16 @@ textAlign: 'center',
 },
 description_text: {
 // fontStyle: 'italic',
-color: 'black',
+//color: 'black',
 margin: 15,
-marginBottom: 15
+marginBottom: 15,
+color:'white'
 },
 default_text: {
 marginLeft: 5,
 marginRight: 5,
 marginTop: 5,
+color:'white'
 },
 viewStyle : {
 backgroundColor :"white",
@@ -127,7 +129,7 @@ flexDirection : 'row',
 alignItems : 'center'
 },
 descriptionDetail : {
-backgroundColor : "#98d2c1",
+backgroundColor : 'rgb(130,32,70)',
 marginLeft: 25,
 marginRight: 25,
 marginTop: 25,
@@ -149,18 +151,19 @@ alignItems : 'center'
 
 },
 button : {
-backgroundColor : "#98d2c1",
-marginLeft: 25,
-marginRight: 25,
-marginTop: 25,
-marginBottom : 25,
-borderRadius : 25,
-minHeight : 50,
-justifyContent: 'center',
-alignItems : 'center',
-elevation : 10
-
-
+  backgroundColor : 'rgb(130,32,70)',
+  marginLeft: 25,
+  marginRight: 25,
+  marginTop: 25,
+  marginBottom : 25,
+  borderRadius : 25,
+  minHeight : 50,
+  justifyContent: 'center',
+  alignItems : 'center',
+  elevation : 10
+},
+textButton:{
+  color:"white"
 }
 
 })

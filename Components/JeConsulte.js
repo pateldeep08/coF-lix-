@@ -4,21 +4,16 @@ import { StyleSheet, Text, View, Button, Alert, ImageBackground, FlatList} from 
 import { TextInput } from 'react-native-paper';
 import {KeyboardAvoidingView} from 'react-native';
 import firebase from 'firebase'
-
 import bg from "../assets/fond.png"
 import username from "../assets/name.png"
-
 import DemandeItems from './DemandeItems'
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import PublicationItems from './PublicationItems'
-
 import PageDemande from './PageDemande'
-
 import InvertedFlatlist from 'react-native-inverted-flat-list';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { colors } from 'react-native-elements';
 
 class JeConsulte extends React.Component {
 
@@ -29,11 +24,8 @@ class JeConsulte extends React.Component {
             demandes : [],
             propositions : [],
             demProp : false
-
         }
     }
-
-
 
     componentDidMount(){
 
@@ -44,22 +36,18 @@ class JeConsulte extends React.Component {
           const demandes = []
           childSnapshot.forEach((doc) => {
             demandes.push({
-                  key : doc.key,
-                  description : doc.val().description,
-                  titre : doc.val().titre ,
-                  dateFin : doc.val().dateFin,
-                  prenom : doc.val().prenom,
-                  numTel : doc.val.numTel
-                }
-            );
+                key : doc.key,
+                description : doc.val().description,
+                titre : doc.val().titre ,
+                dateFin : doc.val().dateFin,
+                prenom : doc.val().prenom,
+                numTel : doc.val.numTel
+            });
           })
     
           this.setState({
             demandes : demandes
           })
-    
-
-    
         })
 
         firebase.database().ref().child('propositions').on('value', (childSnapshot) => {
@@ -71,16 +59,65 @@ class JeConsulte extends React.Component {
                     description : doc.val().description,
                     titre : doc.val().titre ,
                     dateFin : doc.val().duree
-                  }
-              );
+                })
             })
       
             this.setState({
               propositions : propositions
             })
-      
         })
-    
+    }
+
+    demandesButton(){
+        return(
+
+            <View style={styles.buttonContainer}>
+
+                <TouchableOpacity
+                    onPress={()=>this.demProp(1)}
+                    style={styles.button1}>
+                
+                    <Text> Les demandes </Text>
+                    
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={()=>this.demProp(2)}
+                    style={styles.button}>
+                
+                    <Text> Les Propositions </Text>
+                    
+                </TouchableOpacity>
+
+            </View> 
+
+        )
+    }
+
+    propositionsButton(){
+        return(
+
+            <View style={styles.buttonContainer1}>
+
+                <TouchableOpacity
+                    onPress={()=>this.demProp(1)}
+                    style={styles.button}>
+                
+                    <Text> Les demandes </Text>
+                    
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={()=>this.demProp(2)}
+                    style={styles.button1}>
+                
+                    <Text> Les Propositions </Text>
+                    
+                </TouchableOpacity>
+
+            </View> 
+
+        )
     }
 
     demProp(a){
@@ -111,11 +148,9 @@ class JeConsulte extends React.Component {
     demandes(){
 
         return(
-            
-            
 
             <InvertedFlatlist
-                style = {styles.flat}
+                style = {styles.flatDem}
                 data={this.state.demandes}
                 renderItem={({item}) => <DemandeItems demandes={item} DetailDemande={this._afficherDetailDemande}/>}
             />
@@ -127,63 +162,28 @@ class JeConsulte extends React.Component {
         return(
 
             <InvertedFlatlist
-                style = {styles.flat}
+                style = {styles.flatProp}
                 data={this.state.propositions}
                 renderItem={({item}) => <PublicationItems publications={item} DetailProposition={this._afficherDetailProposition}/>}
             />
         )
     }
 
-
     render() {
       
-
         console.log(this.state.demandes)
-
 
         return(
 
-            //<ImageBackground source = {bg} style = {styles.bg}>
-
                 <View style={styles.main_container}> 
 
-                    <View style={styles.buttonContainer}>
-
-                        <TouchableOpacity
-                            onPress={()=>this.demProp(1)}
-                            style={styles.button}>
-                        
-                            <Text> Les demandes </Text>
-                            
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            onPress={()=>this.demProp(2)}
-                            style={styles.button}>
-                        
-                            <Text> Les Propositions </Text>
-                            
-                        </TouchableOpacity>
-
-                       
-                    </View>
+                    {this.state.demProp ? this.demandesButton() : this.propositionsButton()}
 
                     <View style={styles.center}></View>
 
-                   
                     {this.state.demProp ? this.demandes() : this.propositions()}
 
-                    
-            
-                
-
-
-
-
                 </View>
-
-
-            // </ImageBackground>
         )
     }
 }
@@ -191,17 +191,15 @@ class JeConsulte extends React.Component {
 const styles = StyleSheet.create({
 
     main_container: {
-    justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly',
     },
-  
     container: {
-      flex: 1,
-      //backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'space-evenly',
-      opacity:1
+        flex: 1,
+        //backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        opacity:1
     },
-   
     bg : {
         flex :1,
         width : null,
@@ -209,12 +207,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-
     title_page:{
-    fontWeight: 'bold',
-    fontSize: 60,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: 60,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
     button:{
         backgroundColor : "white",
@@ -227,23 +224,49 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems : 'center',
         elevation : 10,
-        width : 140
-        
-  },
-  center:{
-    //height:'2%',
-    backgroundColor:'#7fbcac',
-    justifyContent:"center",
-    alignItems:'center',
-},
-  buttonContainer : {
-      flexDirection : 'row',
-      justifyContent: 'center',
-      backgroundColor : "#98d2c1",
-  },
-  flat : {
-      backgroundColor : "#98d2c1"
-  }
+        width : 140,
+ 
+    },
+    button1:{
+        backgroundColor : "white",
+        marginLeft: 25,
+        marginRight: 25,
+        marginTop: 25,
+        marginBottom : 10,
+        borderRadius : 25,
+        minHeight : 50,
+        justifyContent: 'center',
+        alignItems : 'center',
+        elevation : 10,
+        width : 140,
+        borderWidth : 2,
+        borderWidth : 2,
+        //paddingBottom : 11,
+        elevation : 10,
+       // backgroundColor : 'rgb(133,105,177)'
+    },
+    center:{
+        //height:'2%',
+        backgroundColor:'#7fbcac',
+        justifyContent:"center",
+        alignItems:'center',
+    },
+    buttonContainer : {
+        flexDirection : 'row',
+        justifyContent: 'center',
+        backgroundColor : 'rgb(133,105,177)',
+    },
+    buttonContainer1 : {
+        flexDirection : 'row',
+        justifyContent: 'center',
+        backgroundColor : "rgb(130,32,70)",
+    },
+    flatProp : {
+        backgroundColor : 'rgb(130,32,70)'
+    },
+    flatDem:{
+        backgroundColor : 'rgb(133,105,177)'
+    }
   });
 
 export default JeConsulte

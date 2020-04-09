@@ -93,10 +93,6 @@ class Login extends React.Component {
 
                         <View style = {styles.container}>
 
-
-                        
-
-                        
                             <Text style = {styles.textH}>Résidence St-Félix</Text>
 
                             <View > 
@@ -211,7 +207,8 @@ const styles = StyleSheet.create({
         borderColor : "#98d2c1",
         borderWidth : 2,
         paddingBottom : 11,
-        elevation : 5
+        elevation : 10,
+        backgroundColor:'white'
     },
     buttonContainer:{
         flexDirection : 'row',

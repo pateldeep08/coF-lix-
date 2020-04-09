@@ -30,7 +30,7 @@ class DetailDemandeItems extends React.Component {
             <Text style={styles.title_text}>{titre}</Text>
 
             <View style={styles.description_icon}>
-              <Entypo name="text" size={32} color="#98d2c1"  />
+              <Entypo name="text" size={32} color="rgb(133,105,177)"  />
               <Text>  Description : </Text>
             </View>
 
@@ -39,28 +39,28 @@ class DetailDemandeItems extends React.Component {
             </View>
 
             <View style={styles.description_icon}>
-              <Ionicons name="md-information-circle" size={32} color="#98d2c1" style={styles.icon} />
+              <Ionicons name="md-information-circle" size={32} color="rgb(133,105,177)" style={styles.icon} />
               <Text>  Information Pratique : </Text>
             </View>
 
             <View style={styles.info}>
-              <FontAwesome name="user" size={32} color="#98d2c1" style={styles.icon} />
+              <FontAwesome name="user" size={32} color="rgb(133,105,177)" style={styles.icon} />
               <Text>        Demandé par :</Text>
             </View>
 
             <View style={styles.info}>
-              <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
+              <Entypo name="calendar" size={32} color="rgb(133,105,177)" style={styles.icon} />
               <Text>    Demandé avant le : {dateFin}</Text>
             </View>
 
             <View style={styles.info}>
-              <Foundation name="telephone" size={32} color="#98d2c1" style={styles.icon} />
+              <Foundation name="telephone" size={32} color="rgb(133,105,177)" style={styles.icon} />
               <Text>       +33 6 52 05 80 56</Text>
             </View>
 
             <TouchableOpacity
               style={styles.button}>
-              <Text>J'aide</Text>
+              <Text style={styles.TextButton}>J'aide</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   scrollview_container: {
     flex: 1,
-    backgroundColor : "#98d2c1",
+    backgroundColor : "rgb(133,105,177)",
   },
   image: {
     height: 169,
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
    // fontStyle: 'italic',
     color: 'black',
     margin: 15,
-    marginBottom: 15
+    marginBottom: 15,
+    color : 'white'
   },
   default_text: {
     marginLeft: 5,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems : 'center'
   },
   descriptionDetail : {
-    backgroundColor : "#98d2c1",
+    backgroundColor : "rgb(133,105,177)",
     marginLeft: 25,
     marginRight: 25,
     marginTop: 25,
@@ -153,11 +154,9 @@ const styles = StyleSheet.create({
     marginLeft : 60,
     flexDirection : 'row',
     alignItems : 'center'
-    
-
   },
   button : {
-    backgroundColor : "#98d2c1",
+    backgroundColor : "rgb(133,105,177)",
     marginLeft: 25,
     marginRight: 25,
     marginTop: 25,
@@ -166,11 +165,11 @@ const styles = StyleSheet.create({
     minHeight : 50,
     justifyContent: 'center',
     alignItems : 'center',
-    elevation : 10
-    
-
+    elevation : 10,
+  },
+  TextButton:{
+    color: 'white'
   }
-
 })
 
 

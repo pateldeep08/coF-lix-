@@ -190,7 +190,7 @@ class Register extends React.Component {
             <ImageBackground source = {bg} style = {styles.bg}>
 
                  
-                <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+                <KeyboardAvoidingView style={styles.container} behavior="padding" >
                 
                     <View> 
                         <Text>S'inscire</Text>

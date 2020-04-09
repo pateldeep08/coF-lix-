@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native'
 import CreerEvenement from './CreerEvenement'
 import { Ionicons, Entypo, FontAwesome, Foundation, EvilIcons,MaterialIcons} from '@expo/vector-icons';
 
+const COULEUR = 'rgb(5,105,136)'
 
 class EvenementItems extends React.Component {
   render() {
@@ -33,17 +34,17 @@ class EvenementItems extends React.Component {
           </View>
 
           <View style={styles.description_container}>
-            <Entypo name="text" size={32} color="#98d2c1"/>
+            <Entypo name="text" size={32} color='rgb(5,105,136)'/>
             <Text style={styles.description_text} numberOfLines={3}>  {evenements.description}</Text>
           </View>
 
           <View style = {styles.calendar}>
-            <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon}/>
+            <Entypo name="calendar" size={32} color='rgb(5,105,136)' style={styles.icon}/>
             <Text style={styles.date_text}>    Le {evenements.date} à {evenements.heure}h {evenements.minutes}min</Text>
           </View>
 
           <View style={styles.lieu}>
-            <MaterialIcons name="place" size={32} color="#98d2c1" style={styles.icon} />
+            <MaterialIcons name="place" size={32} color='rgb(5,105,136)' style={styles.icon} />
             <Text style={styles.lieu_text}>    {evenements.lieu}</Text>
           </View>
 
@@ -62,6 +63,7 @@ const styles = StyleSheet.create({
     borderRadius : 25,
     justifyContent: 'center',
     alignItems : 'center',
+    marginTop : 5
    // marginLeft : 
   },
   image: {

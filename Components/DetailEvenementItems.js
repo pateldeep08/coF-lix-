@@ -10,6 +10,8 @@ import firebase from 'firebase'
 
 import Participants from './Participants'
 
+const COULEUR = 'rgb(5,105,136)'
+
 
 
 class DetailEvenementItems extends React.Component {
@@ -64,15 +66,11 @@ class DetailEvenementItems extends React.Component {
     })
 
     this.setState({isParticipe:true})
-
   }
 
   jeParticipePas(){
 
     this.setState({isParticipe:true})
-
-
-
   }
 
   render() {
@@ -94,7 +92,7 @@ class DetailEvenementItems extends React.Component {
         <Text style={styles.title_text}>{titre}</Text>
 
         <View style={styles.description_icon}>
-          <Entypo name="text" size={32} color="#98d2c1"  />
+          <Entypo name="text" size={32} color='rgb(5,105,136)'  />
           <Text>  Description : </Text>
         </View>
 
@@ -103,36 +101,31 @@ class DetailEvenementItems extends React.Component {
         </View>
 
         <View style={styles.description_icon}>
-          <Ionicons name="md-information-circle" size={32} color="#98d2c1" style={styles.icon} />
+          <Ionicons name="md-information-circle" size={32} color='rgb(5,105,136)' style={styles.icon} />
           <Text>  Information Pratique : </Text>
         </View>
 
         <View style={styles.info}>
-          <FontAwesome name="user" size={32} color="#98d2c1" style={styles.icon} />
+          <FontAwesome name="user" size={32} color='rgb(5,105,136)' style={styles.icon} />
           <Text>        Organisé par :</Text>
         </View>
 
         <View style={styles.info}>
-          <Entypo name="calendar" size={32} color="#98d2c1" style={styles.icon} />
+          <Entypo name="calendar" size={32} color='rgb(5,105,136)' style={styles.icon} />
           <Text>    Le {date} à {heure}h{minutes}min</Text>
         </View>
 
         <View style={styles.info}>
-          <MaterialIcons name="place" size={32} color="#98d2c1" style={styles.icon} />
+          <MaterialIcons name="place" size={32} color='rgb(5,105,136)' style={styles.icon} />
           <Text>    A {lieu}</Text>
         </View>
 
         <View style={styles.participantsContainer}>
-          <FontAwesome name="users" size={32} color="#98d2c1" style={styles.icon} />
+          <FontAwesome name="users" size={32} color='rgb(5,105,136)' style={styles.icon} />
           <Text>    Participants : </Text>
         </View>
 
         <View style = {styles.participants}>
-
-          <View style={styles.description_icon}>
-            <FontAwesome name="check-circle" size={32} color="green" style={styles.icon} />
-            <Text>  Marie</Text>
-          </View>
 
           <FlatList
             //style = {styles.flat}   
@@ -186,7 +179,7 @@ justifyContent: 'center'
 },
 scrollview_container: {
 flex: 2,
-backgroundColor : "#98d2c1",
+backgroundColor : COULEUR,
 },
 image: {
 height: 169,
@@ -210,9 +203,10 @@ textAlign: 'center',
 },
 description_text: {
 // fontStyle: 'italic',
-color: 'black',
+color: 'white',
 margin: 15,
 marginBottom: 15,
+//color : 'white',
 
 },
 default_text: {
@@ -240,13 +234,13 @@ flexDirection : 'row',
 alignItems : 'center'
 },
 descriptionDetail : {
-backgroundColor : "#98d2c1",
+backgroundColor : COULEUR,
 marginLeft: 25,
 marginRight: 25,
 marginTop: 25,
 marginBottom : 25,
 borderRadius : 25,
-minHeight : 200,
+minHeight : 100,
 justifyContent: 'center'
 },
 icon : {
@@ -296,30 +290,30 @@ button : {
   borderColor : 'red',
   borderWidth : 1,
   width : 150
-  
-  },
+},
 buttonContainer : {
   flexDirection : 'row',
   alignItems:'center',
   justifyContent: 'center',
   //flex : 1
+  //backgroundColor:'black'
 },
 participantsContainer:{
   flexDirection:'row',
   alignItems:'center',
   marginTop : 20,
-  //marginBottom : 50
+
 },
 flexContainer:{
   flex:1
 },
 participants:{
   marginLeft: 30,
-  //sflexDirection:'column',
   marginTop : 10,
   marginBottom : 25
+},
 
-}
+
 
 })
 

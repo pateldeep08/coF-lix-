@@ -11,6 +11,7 @@ import JeDemande from "./JeDemande"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
 export default class Accueil extends React.Component {
 
     constructor(props) {
@@ -23,7 +24,7 @@ export default class Accueil extends React.Component {
             user : this.props.user
         }
     }
-   
+    
     render(){
 
         return(
@@ -83,7 +84,6 @@ export default class Accueil extends React.Component {
                 </View>
 
             </View>
-
         ) 
     } 
 }
@@ -135,7 +135,5 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:'center',
         borderRadius : 20
-
     }
-
 })

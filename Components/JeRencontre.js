@@ -13,19 +13,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import EvenementItems from './EvenementItems'
 import InvertedFlatlist from 'react-native-inverted-flat-list';
 
+const COULEUR_Rencontre = 'rgb(5,105,136)'
+
 
 class JeRencontre extends React.Component {
 
-    constructor(props){
-        super(props)
-        this.state = {
+  constructor(props){
+    super(props)
+    this.state = {
 
-            evenements : [],
-            //description:"",
-            //titre :"",
-
-        }
+      evenements : [],
     }
+  }
 
 
 
@@ -55,8 +54,6 @@ class JeRencontre extends React.Component {
             evenements : evenements
           })
         })
-    
-  
     }
 
    _afficherDetailEvenement = (heure,titre,description,minutes,date,lieu,key)=>{
@@ -77,35 +74,27 @@ class JeRencontre extends React.Component {
 
         return(
 
-  
-
                 <View style={styles.main_container}> 
                 
-
                       <InvertedFlatlist
                         style = {styles.flat}   
                         data={this.state.evenements}
                         renderItem={({item}) => <EvenementItems evenements={item} DetailEvenement = {this._afficherDetailEvenement}/>}
                       />
 
-
                       <View style = {styles.buttonContainer}>
                         <TouchableOpacity
                           onPress={()=>this._validerJeRencontre()} 
                           style={styles.button}>
                           
-                          <Text>Créer un événement</Text>
+                          <Text style = {styles.fontButton}>Créer un événement</Text>
                               
                         </TouchableOpacity>
 
                       </View>
 
-
-
                 </View>
 
-
-            
         )
     }
 }
@@ -146,21 +135,24 @@ const styles = StyleSheet.create({
     borderRadius:100,
     justifyContent:'center',
     marginLeft:55,
-    backgroundColor:"#98d2c1",
+    backgroundColor: COULEUR_Rencontre,
     elevation:10,
-    borderColor:"#98d2c1",
+    borderColor:COULEUR_Rencontre,
     marginBottom:5,
     marginTop : 5,
 
     // back: 20,
   },
   flat : {
-    backgroundColor : "#98d2c1",
+    backgroundColor : COULEUR_Rencontre,
   },
   buttonContainer:{
-    backgroundColor:'rgba(0, 0, 0, 0)',
+    backgroundColor:'white',
    // backgroundColor: 'white',
    // opacity: 0.7
+  },
+  fontButton:{
+    color : 'white'
   }
   });
 

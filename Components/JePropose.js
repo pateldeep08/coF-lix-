@@ -38,9 +38,7 @@ class JePropose extends React.Component {
                 titre: this.state.titre,
                 description : this.state.description,
                 duree : this.state.duree
-                //description: this.state.description,
-                //duree: this.state.duree,
-                //userId: 'test'
+
 
             }).then(() => {
                 //success callback
@@ -82,18 +80,6 @@ class JePropose extends React.Component {
 
 
 
-       // var userId = this.props.route.params.userName
-
-        /*
-        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-            var username = (snapshot.val() && snapshot.val().displayName) || 'Anonymous';
-     
-            console.log(username)
-           // ...
-        });
-        */
-
-      //  console.log(userId)
 
         const json = this.state
         const aff = this
@@ -105,18 +91,11 @@ class JePropose extends React.Component {
           json.json = data.toJSON()
           //   resultat = a;
           console.log(json.json)
-         //   console.log("premier");
-         //   //console.log(a)
-         //   aff.affichageJSON(json.json)
-         //   console.log(json.json);
+
         });
 
 
-       //console.log(this.state.json)
 
-      //console.log("------------")
-      //console.log(a)
-      //console.log(propositions)
 
     }
 
@@ -221,7 +200,7 @@ class JePropose extends React.Component {
                             <TouchableOpacity
                                 style = {styles.buttonVal}
                                 onPress = {()=>this.Proposition()} >
-                                <Text>Valider</Text>
+                                <Text style={styles.textButton}>Valider</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -230,7 +209,6 @@ class JePropose extends React.Component {
                     </View>
 
                 </KeyboardAvoidingView>
-
 
         )
     }
@@ -242,7 +220,7 @@ const styles = StyleSheet.create({
       //backgroundColor: '#fff',
 
       //opacity:1,
-      backgroundColor:"#98d2c1"
+      backgroundColor:'rgb(130,32,70)'
     },
     container2 : {
         alignItems: 'center',
@@ -250,6 +228,7 @@ const styles = StyleSheet.create({
         backgroundColor : 'white',
         margin : "5%",
         alignItems: 'center',
+        borderRadius : 25
 
 
 
@@ -270,7 +249,7 @@ const styles = StyleSheet.create({
         borderRadius : 20,
         //flex : 1
         borderWidth :2,
-        borderColor : "#98d2c1",
+        borderColor : 'rgb(130,32,70)',
         margin : "5%",
         //textAlign: 'center',
        // flex : 1
@@ -293,22 +272,23 @@ const styles = StyleSheet.create({
         height:200,
         //flex : 1
         borderWidth :2,
-        borderColor : "#98d2c1",
+       // borderColor : 'rgb(130,32,70)',
         margin : "5%",
         //textAlign: 'center',
        // justifyContent: 'center',
        paddingLeft : 10,
        paddingTop : 14,
+       borderColor:'rgb(130,32,70)'
 
 
        //backgroundColor :'rgb(59,22,4)'
-       backgroundColor : 'rgb(255,255,255)'
+     //  backgroundColor : 'rgb(130,32,70)'
         },
 
         input_titre: {
         fontWeight: 'bold',
         fontSize: 26,
-        color: '#666666'
+        color: 'rgb(130,32,70)'
     },
 
     bg : {
@@ -337,7 +317,7 @@ const styles = StyleSheet.create({
     },
     buttonVal:{
         margin : "5%",
-        backgroundColor : "#98d2c1",
+        backgroundColor : 'rgb(130,32,70)',
         borderRadius : 25,
         height : 50,
         width : 150,
@@ -355,10 +335,14 @@ const styles = StyleSheet.create({
         width : 150,
         justifyContent: 'center',
         alignItems : 'center',
-        borderColor : "#98d2c1",
+        borderColor : 'rgb(130,32,70)',
         borderWidth : 2,
         paddingBottom : 11,
-        elevation : 5
+        elevation : 5,
+        backgroundColor:'white'
+    },
+    textButton:{
+        color:'white'
     }
 
   });
